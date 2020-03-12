@@ -3,11 +3,18 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { HomePage, GuardadosPage, MapaPage, TabsPage } from '../pages/index.paginas'
+
+//plugins
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { Toast } from '@ionic-native/toast/ngx';
+
+//servicios
+import { HistorialService } from '../providers/historial/historial';
 
 @NgModule({
   declarations: [
@@ -15,11 +22,11 @@ import { Toast } from '@ionic-native/toast/ngx';
     HomePage,
     GuardadosPage,
     MapaPage,
-    TabsPage,
-
+    TabsPage
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
 
   ],
@@ -35,7 +42,9 @@ import { Toast } from '@ionic-native/toast/ngx';
     StatusBar,
     SplashScreen,
     BarcodeScanner,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    HistorialService,
+    InAppBrowser,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
   ]
 })
 export class AppModule {}
