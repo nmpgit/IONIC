@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color='dark' class='center'>
+    <ion-title>
+      8gag
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab left bottom>
+    <button ion-fab color="verde" (click)='mostrarModal()'>
+    	<ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-card *ngFor="let item of items | async">
+  	<img src="{{item.img}}">
+  	<ion-card-content>
+	  	<ion-card-title>
+	  			{{item.titulo}}
+	  	</ion-card-title>
+  	</ion-card-content>
+	<ion-row>
+		<ion-col text-right>
+			<button ion-button clear small color='primary' icon-left>
+				<ion-icon name='share-alt'></ion-icon> Compartir
+			</button>
+		</ion-col>
+	</ion-row>
+
+  </ion-card>
+</ion-content>

@@ -1,0 +1,6 @@
+1: Al apretar el botón 'Realizar Scaneo' se llama a la funcion Scan (de home.ts)
+2: Se pregunta el ambiente (!cordova = prueba en PC)
+3: Se manda al servicio historial, a la función agregarHistorial()
+4: El servicio lo recibe, lo transforma en un objeto de tipo ScanData (carpeta models) y lo agrega al array que muestra las lecturas y lo manda a otra funcion.
+5: El models lo agarra y le pregunta cómo empieza el string scaneado y le setea el tipo de acuerdo a ello.
+6: El service lee el tipo que fue seteado del objeto y hace la funcion correspondiente
