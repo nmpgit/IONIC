@@ -1,35 +1,41 @@
 <ion-header>
   <ion-navbar>
-  	<ion-buttons text-right>
-  		<button ion-button (click)='cerrarModal()' color='danger'> 
-  			  <ion-icon name="close-circle"></ion-icon>
+  	<ion-buttons left>
+  		<button ion-button (click)='cerrarModal()' > 
+  			 Cerrar
 		</button>
   	</ion-buttons>	
-    <ion-title text-center>{{titulo | placeholder:'Crear Post'}}</ion-title>
-    <!--placeholder es el nombre del pipe. Lo que hace es cuando no titulo es null, osea no se escribió nada en el input de mas abajo, aparece Crear Post. Cuando hay dato, coloca el nombre.-->
+  	<div>
+	    <ion-title text-center>{{titulo | placeholder:'Nuevo Post'}}</ion-title>
+  	</div>    <!--placeholder es el nombre del pipe. Lo que hace es cuando no titulo es null, osea no se escribió nada en el input de mas abajo, aparece Crear Post. Cuando hay dato, coloca el nombre.-->
+    <ion-buttons end>
+		<button ion-button (click)='crearPost()' [disabled]='titulo.length <=1 || imagenTomada.length <=1 '> 
+			 Crear
+		</button>
+  	</ion-buttons>	
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 	<ion-list>
 	  <ion-item>
-	    <ion-label fixed>Titulo</ion-label>
+	    <ion-label floating>Titulo</ion-label>
 	    <ion-input type="text" [(ngModel)]='titulo'></ion-input>
 	  </ion-item>
-	  <ion-item>
-	  	<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMDk0fQ&auto=format&fit=crop&w=500&q=60">
+	  <ion-item *ngIf='imagenTomada'>
+	  	<img src="{{imagenTomada}}">
 	  </ion-item>
 	</ion-list>
 
 	<ion-grid>
 		<ion-row>
 			<ion-col>
-				<button ion-button clear block icon-left> 
+				<button ion-button clear block icon-left (click)='seleccionarImagen()'>  
 					<ion-icon  name='photos'></ion-icon>
 				</button>
 			</ion-col>
 			<ion-col>
-				<button ion-button  clear block icon-left> 
+				<button ion-button  clear block icon-left (click)='mostrarCamara()'> 
 					<ion-icon  name='camera'></ion-icon>
 				</button>
 			</ion-col>

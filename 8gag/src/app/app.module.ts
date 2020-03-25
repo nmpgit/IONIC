@@ -8,9 +8,16 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SubirPage } from '../pages/subir/subir';
 
+//plgins
+import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 //Pipes
 import { PipesModule } from '../pipes/pipes.module';
 
+//providers
+import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
 
 //FIREBASE
 import { AngularFireModule } from '@angular/fire';
@@ -51,7 +58,12 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     AngularFireDatabase,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    ImagePicker,
+    SocialSharing,
+    CargaArchivoProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    CargaArchivoProvider
   ]
 })
 export class AppModule {}

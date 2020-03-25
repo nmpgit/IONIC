@@ -1,0 +1,5 @@
+Firebase es como una base de datos online de google, no relacional, en la que desde el codigo se le consulta.
+En el app moudule está seteado el firebaseConfig, que pasa los datos par ala conecxion.
+
+En caso de falla a la hora de ejectutar el image picker
+https://github.com/Telerik-Verified-Plugins/ImagePicker/issues/90
