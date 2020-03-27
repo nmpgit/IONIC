@@ -1,0 +1,17 @@
+<ion-content padding>
+	<ion-list>
+	  <ion-item>
+	    <ion-label stacked>Username</ion-label>
+	    <ion-input type="text"></ion-input>
+	  </ion-item>
+	</ion-list>
+
+	<button ion-button block color='primary' (click)='ingresar()'>
+		Ingresar
+	</button>
+
+	<span style="font-size: 8px" *ngIf='!mensaje' > El fin de esta pantalla es visualizar cuánto tiempo puedo 'pausar' la entrada y salida a esta pantalla (tiempo: 3 segundos)</span>
+
+    <span *ngIf='mensaje' style="font-size: 8px">Espere 3 segundos para entrar al próximo componente..</span>
+
+</ion-content>

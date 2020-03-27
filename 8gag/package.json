@@ -25,12 +25,13 @@
     "@ionic-native/social-sharing": "^4.20.0",
     "@ionic-native/splash-screen": "4.20.0",
     "@ionic-native/status-bar": "4.20.0",
-    "@ionic/storage": "2.2.0",
+    "@ionic/storage": "^2.2.0",
     "angularfire2": "^5.4.2",
     "cordova-android": "^8.1.0",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-image-picker": "git+https://github.com/shaik305/cordova-plugin-image-picker.git",
     "cordova-plugin-x-socialsharing": "^5.6.4",
+    "cordova-sqlite-storage": "^5.0.0",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^7.12.0",
     "ionic-angular": "3.9.9",
@@ -66,7 +67,8 @@
       "cordova-plugin-image-picker": {},
       "cordova-plugin-x-socialsharing": {
         "ANDROID_SUPPORT_V4_VERSION": "24.1.1+"
-      }
+      },
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"

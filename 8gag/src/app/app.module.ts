@@ -4,14 +4,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
+//components
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { SubirPage } from '../pages/subir/subir';
+import { IntroduccionPage } from '../pages/introduccion/introduccion';
+import { LogueoPage } from '../pages/logueo/logueo';
 
 //plgins
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { IonicStorageModule } from '@ionic/storage';
 
 //Pipes
 import { PipesModule } from '../pipes/pipes.module';
@@ -23,6 +27,9 @@ import { CargaArchivoProvider } from '../providers/carga-archivo/carga-archivo';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AjustesProvider } from '../providers/ajustes/ajustes'
+
+
 export const firebaseConfig = {
     apiKey: "AIzaSyCMYGs0K6KsYmF8aira09b180dYXadCvC4",
     authDomain: "gag-6cfe2.firebaseapp.com",
@@ -38,11 +45,14 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    SubirPage
+    SubirPage,
+    IntroduccionPage,
+    LogueoPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -52,7 +62,9 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     HomePage,
-    SubirPage
+    SubirPage,
+    IntroduccionPage,
+    LogueoPage
   ],
   providers: [
     StatusBar,
@@ -63,7 +75,8 @@ export const firebaseConfig = {
     SocialSharing,
     CargaArchivoProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CargaArchivoProvider
+    CargaArchivoProvider,
+    AjustesProvider
   ]
 })
 export class AppModule {}

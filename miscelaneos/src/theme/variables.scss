@@ -34,29 +34,14 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    	#488aff,
-  secondary:  	#32db64,
-  danger:     	#f53d3d,
-  light:      	#f4f4f4,
-  dark:       	#000000,
-  verde:		#34eb95
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222
 );
 
-.center {
-	text-align:center
-}
 
-.numeroRedondo {
-	margin: auto;
-	border-radius: 100px;
-	font-size:60px;
-	color: white;
-	text-align:center;
-	padding: 20px;
-	width: 150px;
-	height: 150px;
-	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
