@@ -17,7 +17,9 @@ export class LoginPage {
 
 	ingresar(){
 		this._userv.ingresar(this.correo, this.password).subscribe(()=>{
-			
+			if (this._userv.activo()) {
+				this.viewCtrl.dismiss(true)
+			}
 		})
 	}
 

@@ -7,7 +7,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { MyApp } from './app.component';
 import { ProductoPage } from "../pages/producto/producto"
-import { HomePage, CategoriasPage, OrdenesPage, TabsPage, PorCategoriasPage, LoginPage } from '../pages/index.paginas';
+import { HomePage, BuscarPage, CategoriasPage, OrdenesDetallePage, OrdenesPage, CarritoPage, TabsPage, PorCategoriasPage, LoginPage } from '../pages/index.paginas';
 
 
 import { CarritoProvider } from '../providers/carrito/carrito';
@@ -27,6 +27,9 @@ import { IonicStorageModule } from '@ionic/storage';
     CategoriasPage,
     OrdenesPage,
     PorCategoriasPage,
+    OrdenesDetallePage,
+    CarritoPage,
+    BuscarPage,
     TabsPage,
     LoginPage
   ],
@@ -43,8 +46,11 @@ import { IonicStorageModule } from '@ionic/storage';
     ProductoPage,
     TabsPage,
     CategoriasPage,
+    CarritoPage,
     OrdenesPage,
+    BuscarPage,
     PorCategoriasPage,
+    OrdenesDetallePage,
     TabsPage,
     LoginPage
   ],

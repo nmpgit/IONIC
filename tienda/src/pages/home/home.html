@@ -1,10 +1,15 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-		Mi Tienda	
-	</ion-title>
-	<ion-buttons end>
-		<button ion-button icon-only (click)='_carr.verCarrito()'>
+ 	<ion-buttons left>
+ 		<button ion-button *ngIf="_userv.activo()" (click)="_userv.cerrarSesion()">
+        Salir
+      </button>
+      <button ion-button *ngIf="!_userv.activo()" (click)="_carr.loguearse()">
+        Ingresar
+      </button>
+	</ion-buttons>
+	<ion-buttons right>
+		<button ion-button icon-only (click)='_carr.loguearse()'>
 			<ion-icon name='cart'></ion-icon>
 			<ion-badge color='danger' class='carrito-numero'>{{_carr.items.length}}</ion-badge>
 		</button>
@@ -21,7 +26,7 @@
 			
 				<img src='{{rutaImg}}{{item.codigo}}.jpg' [navPush]='productoPage' [navParams]='{producto: item }'>
 				<p>
-					{{item.codigo}} <br> {{item.precio_compra | currency: 'USD':true}}
+					{{item.producto}} <br> <strong>{{item.precio_compra | currency: 'USD':true}}</strong>
 				</p>
 
 			</ion-col>

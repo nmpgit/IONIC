@@ -37,7 +37,7 @@
 	</p>
 
 
-	<button ion-button block icon-left (click)='_carritoService.agregarCarrito(producto)'>
+	<button [disabled]='!_userv.activo()' ion-button block icon-left (click)='_carritoService.agregarCarrito(producto)'>
 		<ion-icon name='cart' ></ion-icon> Agregar a carrito
 	</button>
 </ion-content>

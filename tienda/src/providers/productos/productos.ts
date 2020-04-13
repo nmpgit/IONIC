@@ -9,6 +9,7 @@ export class ProductosProvider{
 	pagina:number = 0;
 	paginado:number = 0;
 	productos:any[] = [];
+	resultadosBusqueda:any[] = [];
 	categorias:any[] = [];
 	porCategoria:any[] = [];
 	constructor(private _http: HttpClient) {
@@ -59,5 +60,16 @@ export class ProductosProvider{
 					this.porCategoria.push( ...data.productos);
 				}
 			})
+	}
+
+
+
+	buscarProducto( termino:string ){
+		let url = URL_SERVICIOS + "/productos/buscar/" + termino;
+		this._http.get( url )
+		        .subscribe( resp =>{
+
+		          return this.resultadosBusqueda = resp.productos;
+		        });
 	}
 }
