@@ -7,8 +7,14 @@
 
 <ion-content>
 	<ion-list>
-		<button ion-button *ngFor='let data of historial; let i = index' (click)='abrirScan(i)'>
-			{{data.info}} <p> ({{data.tipo}})</p>
-		</button>
+		<div *ngFor='let data of historial ; let i = index' >
+			<button ion-button (click)='abrirScan(i)' color='{{data.color}}'  [disabled]='data.tipo == "contacto" || data.tipo == "evento"'>
+				<span *ngIf='data.tipo == "mapa"'><p>Google Maps</span>
+				<span *ngIf='data.tipo == "email"'><p>Mail a {{_historialService.mandarEmail(data.info, true)}}</p></span>
+				<span *ngIf='data.tipo == "http"'><p>Link a {{data.url}}</p></span>
+				<span *ngIf='data.tipo == "contacto"'><p>Contacto: {{_historialService.crearContacto(data.info, true)}}</p></span>
+				<span *ngIf='data.tipo == "evento"'><p>{{data.esEvento}}</p></span>
+			</button>
+		</div>
 	</ion-list>
 </ion-content>
