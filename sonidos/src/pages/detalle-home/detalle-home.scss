@@ -1,0 +1,19 @@
+page-detalle-home {
+	ion-header{
+		font-family: 'Bangers', cursive;
+		font-size: 3rem;
+	}
+	ion-footer div {
+		height: 30px;
+		width: 50%;
+		margin: auto; 
+		background-color: white; 
+		text-align: center; 
+		font-size: 1rem; 
+		font-family: Roboto; 
+		letter-spacing: 1.2px
+	}
+	.footer-md::before {
+		background-image: none!important;
+	}	
+}

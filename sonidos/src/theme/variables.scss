@@ -48,8 +48,14 @@ $colors: (
 // iOS only Sass variables can go here
 
 
+img {
+	    width: 40px!important;
+     height: 30px!important;
+}
 
-
+ion-item {
+	margin: 0px 7px!important;
+}
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here

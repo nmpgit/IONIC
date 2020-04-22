@@ -1,21 +1,10 @@
-<ion-header>
-  <ion-navbar color='dark' class='center'>
-    <ion-title>
-      8gag
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content>
+
+<ion-content style='position:relative;'>
   <ion-refresher (ionRefresh)="recargarPagina($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  
-  <ion-fab left bottom>
-    <button ion-fab color="verde" (click)='mostrarModal()'>
-    	<ion-icon name="add"></ion-icon>
-    </button>
-  </ion-fab>
+
 
   <ion-card *ngFor="let item of _cap.imagenes">
   	<img src="{{item.img}}">
@@ -43,9 +32,21 @@
 
   </ion-card>
 
+
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
 
 
 </ion-content>
+<ion-footer class="ion-no-border">
+  
+  <ion-buttons style='opacity:0.7;display: flex; justify-content: space-between; width:100%;position:absolute; bottom:0'>
+    <button ion-fab color="verde" [navPush]='subirImagen'>
+      <ion-icon name="photos"></ion-icon>
+    </button>
+    <button ion-fab color="danger" (click)='cerrarSesion()'>
+      <ion-icon name="unlock"></ion-icon>
+    </button>
+  </ion-buttons> 
+</ion-footer>

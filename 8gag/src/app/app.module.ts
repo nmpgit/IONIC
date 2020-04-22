@@ -10,6 +10,7 @@ import { HomePage } from '../pages/home/home';
 import { SubirPage } from '../pages/subir/subir';
 import { IntroduccionPage } from '../pages/introduccion/introduccion';
 import { LogueoPage } from '../pages/logueo/logueo';
+import { RegistroPage } from '../pages/registro/registro';
 
 //plgins
 import { Camera } from '@ionic-native/camera';
@@ -47,7 +48,8 @@ export const firebaseConfig = {
     HomePage,
     SubirPage,
     IntroduccionPage,
-    LogueoPage
+    LogueoPage,
+    RegistroPage
   ],
   imports: [
     BrowserModule,
@@ -64,7 +66,8 @@ export const firebaseConfig = {
     HomePage,
     SubirPage,
     IntroduccionPage,
-    LogueoPage
+    LogueoPage,
+    RegistroPage
   ],
   providers: [
     StatusBar,

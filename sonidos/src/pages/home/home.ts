@@ -1,69 +1,42 @@
 import { Component } from '@angular/core';
-
-import { ANIMALES } from "../../data/data.animales";
-
-import { Animal } from "../../interfaces/animal.interface";
-
-import { Refresher, reorderArray }  from "ionic-angular";
-
+import { DetalleHomePage } from '../index.paginas';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+  value:any = '';
+  divs:any[] = ['animales', 'chavo', 'personajes', 'personajes2', 'simpson', 'simpson2']
+  constructor(public navCtrl:NavController) {
 
-  animales:Animal[] = [];
-  audio = new Audio();
-  audioTiempo: any;
-  ordenando:boolean = false;
-
-  constructor() {
-    this.animales = ANIMALES.slice(0);
   }
-
-  reproducir( animal:Animal ){
-    this.pausarAudio( animal );
-
-    if(animal.reproduciendo){
-      animal.reproduciendo = false;
-      return;
-    }
-
-    this.audio.src = animal.audio;
-    this.audio.load();
-    this.audio.play();
-
-    animal.reproduciendo = true;
-
-    this.audioTiempo = setTimeout( ()=> animal.reproduciendo = false, animal.duracion * 1000  );
-  }
-
-  private pausarAudio(animalSel:Animal){
-    clearTimeout( this.audioTiempo );
-    this.audio.pause();
-    this.audio.currentTime = 0;
-
-    for(let animal of this.animales){
-      if(animal.nombre != animalSel.nombre){
-        animal.reproduciendo = false;
-      }
+  
+  pushPage(pagina:string) {
+    switch (pagina) {
+      case "animales":
+        this.navCtrl.push(DetalleHomePage, {div: 'animales'})
+        break;  
+      case "chavo":
+        this.navCtrl.push(DetalleHomePage, {div: 'chavo'})
+        break;  
+      case "personajes":
+        this.navCtrl.push(DetalleHomePage, {div: 'personajes'})
+        break;  
+      case "personajes2":
+        this.navCtrl.push(DetalleHomePage, {div: 'personajes2'})
+        break;  
+      case "simpson":
+        this.navCtrl.push(DetalleHomePage, {div: 'simpson'})
+        break;
+      case "simpson2":
+        this.navCtrl.push(DetalleHomePage, {div: 'simpson2'})
+        break;  
+      default:
+        break;
     }
   }
 
-  borrarAnimal(indice:number){
-    this.animales.splice( indice, 1 );
-  }
-
-  recargarAnimales(refresher:Refresher){
-    setTimeout( ()=>{
-          this.animales = ANIMALES.slice(0);
-          refresher.complete();
-    },1500)
-  }
-
-  reordenarAnimales(indices:any){
-    this.animales = reorderArray( this.animales, indices );
-  }
 
 }

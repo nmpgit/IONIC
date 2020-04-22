@@ -1,15 +1,15 @@
 <ion-content padding>
+    <ion-buttons end>
+      <button ion-button style="background-color: transparent;" 
+          (click)="saltarTutorial()">Saltar</button>
+    </ion-buttons>
   <ion-slides pager>
     <!-- Código para crear slides -->
       <ion-slide *ngFor="let slide of slides, let i = index">
-        <ion-toolbar>
-          <ion-buttons end>
-            <button ion-button color="primary"
-                    (click)="saltarTutorial()">Saltar</button>
-          </ion-buttons>
-        </ion-toolbar>
-        <p class="numeroRedondo" [ngStyle]="{'background-color': slide.colors}">{{i + 1}}</p>
-        <!-- <img [src]="slide.image" class="slide-image"/>>-->
+
+       <!-- <p class="numeroRedondo" [ngStyle]="{'background-color': slide.colors}">{{i + 1}}</p>
+        <img [src]="slide.image" class="slide-image"/>-->
+        <br><br>
         <h2 class="slide-title" [innerHTML]="slide.title"></h2>
         <p [innerHTML]="slide.description"></p>
         <span *ngIf='mensaje' style="font-size: 8px">{{texto}}</span>

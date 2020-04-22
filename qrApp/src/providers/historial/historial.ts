@@ -146,9 +146,10 @@ export class HistorialService {
 		//ATENCION: CREA EL CONTACTO VACIO. BUG EN IONIC. NO SE PUEDE SETEAR LAS PROPIEDADES DEL OBJETO CONTACT.
 		contact.name = new ContactName (null, nombreContacto)
 		contact.phoneNumbers = [new ContactField('mobile', tel)];
+		contact.birthday = new Date();
 
 		contact.save().then(
-		  this.mostrarError('Contacto guardado!' + nombreContacto)
+		  this.mostrarError('Contacto guardado: ' + nombreContacto)
 		);
 	}
 
@@ -195,7 +196,7 @@ export class HistorialService {
 	    return fields;
 	}
 
-	mostrarError( mensaje:string ){
+	mostrarError( mensaje:any ){
 	    let toast = this.toastCtrl.create({
 	      message: mensaje,
 	      duration: 2500

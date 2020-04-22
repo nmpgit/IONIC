@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { RegistroPage } from '../registro/registro';
 
 @IonicPage()
 @Component({
@@ -15,65 +16,76 @@ export class LogueoPage {
 				public alertCtrl: AlertController,
             	public loadingCtrl: LoadingController) {
 	}
+	registrarse = RegistroPage;
 
-	ingresar() {
-
-	    this.alertCtrl.create({
-	      title: 'Ingrese la clave',
-	      inputs: [{
-	        name: 'clave',
-	        placeholder: 'clave'
-	      }],
-	      buttons: [{
-	        text: 'Cancelar',
-	        role: 'cancel'
-	      },{
-	        text: 'Ingresar',
-	        handler: data => {
-	          this.verificarUsuario( data.clave )
+	showConfirm(){
+		this.ingresar().then((result) => {
+	        if(result){
+	        	this.verificarUsuario('as')
 	        }
-	      }]
-	    }).present();
+		})  
+	}
 
-		setTimeout (()=>{
-			 this.loading.dismiss();
-		}, 6000);
-    	
-	    
+	ingresar(): Promise<boolean> {
+		return new Promise((resolve, reject) =>{
+		  const confirm = 
+		    this.alertCtrl.create({
+		      title: 'Esta aplicación requiere permisos de acceso.',
+		//	      inputs: [{
+		//	        name: 'clave',
+		//	        placeholder: 'clave'
+		//	      }],
+		      buttons: [{
+		        text: 'No quiero',
+		         handler:()=> resolve(false)
+		      },{
+		        text: '¡Bueno!',
+		        handler:()=> resolve(true)
+		      },
+		//	      {
+		//	        text: '¡Bueno!',
+		//	        handler: data => {
+		//	          this.verificarUsuario( data.clave )
+		//	        }
+		//	      }
+		      ]
+		    }).present();
+		})
 	}
 
 
 	verificarUsuario( clave: string ) {
-
 		this.loading = this.loadingCtrl.create({
-		  content: 'Verificando...'
+		  content: 'Conectando...'
 		});
 
 		this.loading.present();
 		this.navCtrl.setRoot(HomePage)
-		this.mensaje = true;
+		//this.mensaje = true;
 
+		setTimeout(()=>{
+		  this.loading.dismiss()
+
+		}, 3000)
 	}
 
-
-
 	ionViewCanEnter(){ //FUNCION QUE PERMITE INGRESAR A ESTE COMPONENTE
-		console.log('Espere 3 segundos para entrar')
-		let promesa = new Promise ((resolve, reject)=>{
-			setTimeout (()=>{
-				resolve(true)
-			}, 3000);
-		})
+		//console.log('Espere 3 segundos para entrar')
+		//let promesa = new Promise ((resolve, reject)=>{
+		//	setTimeout (()=>{
+		//		resolve(true)
+		//	}, 3000);
+		//})
 
-		return promesa
+		//return promesa
 
 	}
 	ionViewCanLeave(){  //FUNCION QUE PERMITE IRSE DE ESTE COMPONENTE
-		console.log('Espere 3 segundos para salir')
+		console.log('Espere 1 segundo para salir')
 		let promesa = new Promise ((resolve, reject)=>{
 			setTimeout (()=>{
 				resolve(true)
-			}, 3000);
+			}, 1000);
 		})
 
 		return promesa

@@ -11,27 +11,8 @@ $font-path: "../assets/fonts";
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
-
 @import "ionic.globals";
-
-
-// Shared Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass variables found in Ionic's source scss files.
-// To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/theming/overriding-ionic-variables/
-
-
-
-
-// Named Color Variables
-// --------------------------------------------------
-// Named colors makes it easy to reuse colors on various components.
-// It's highly recommended to change the default colors
-// to match your app's branding. Ionic uses a Sass map of
-// colors so you can add, rename and remove colors as needed.
-// The "primary" color is the only required color in the map.
+@import url('https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400;500&display=swap');
 
 $colors: (
   primary:    	#488aff,
@@ -42,8 +23,26 @@ $colors: (
   verde:		#34eb95
 );
 
+
+ion-content {
+	background: #1b5770; /* Old browsers */
+	background: -moz-linear-gradient(top, #1b5770 0%, #341a4a 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #1b5770 0%,#341a4a 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #1b5770 0%,#341a4a 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+
 .center {
 	text-align:center
+}
+
+.alert-md .alert-head .alert-message .alert-title {
+    font-size: 18px!important;
+    text-align: center!important;
+}
+
+.content-md, .item-md  {
+	background-color:transparent!important
 }
 
 .numeroRedondo {
@@ -57,47 +56,41 @@ $colors: (
 	height: 150px;
 	text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
 }
-// App iOS Variables
-// --------------------------------------------------
-// iOS only Sass variables can go here
 
 
 
+ion-card {
+	border-radius: 22px !important;
+	height: auto;
+	background-color:#d1d1d1!important
+}
 
-// App Material Design Variables
-// --------------------------------------------------
-// Material Design only Sass variables can go here
-
-
-
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
+.card-content-md {
+	padding: 3px 13px !important;
+}
 
 
+.card-title-md {
+	padding: 0px !important;
+    line-height: 1!important;
+	font-family: 'Baloo Paaji 2', cursive;
+	font-size:1.8rem!important;
+
+}
+
+.col {
+	padding: 0px!important;
+}
 
 
-// App Theme
-// --------------------------------------------------
-// Ionic apps can have different themes applied, which can
-// then be future customized. This import comes last
-// so that the above variables are used and Ionic's
-// default are overridden.
+
+.button-small-md {
+	width: 4px!important;
+	margin: 4px!important;
+	color: gray!important;
+}
 
 @import "ionic.theme.default";
-
-
-// Ionicons
-// --------------------------------------------------
-// The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/ionicons/
-
 @import "ionic.ionicons";
-
-
-// Fonts
-// --------------------------------------------------
-
 @import "roboto";
 @import "noto-sans";

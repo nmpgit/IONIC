@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { MyApp } from './app.component';
 import { IonicStorageModule } from '@ionic/storage';
-import { HomePage, GuardadosPage, MapaPage, TabsPage } from '../pages/index.paginas'
+import { HomePage, GuardadosPage, MapaPage, TabsPage, SplashPage } from '../pages/index.paginas'
 
 
 //Mapas
@@ -28,6 +28,7 @@ import { HistorialService } from '../providers/historial/historial';
     HomePage,
     GuardadosPage,
     MapaPage,
+    SplashPage,
     TabsPage
   ],
   imports: [
@@ -47,6 +48,7 @@ import { HistorialService } from '../providers/historial/historial';
     HomePage,
     GuardadosPage,
     MapaPage,
+    SplashPage,
     TabsPage
   ],
   providers: [

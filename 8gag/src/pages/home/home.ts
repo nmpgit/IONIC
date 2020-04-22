@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
-import { SubirPage } from '../subir/subir';
-import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archivo';
-import { Refresher }  from "ionic-angular";
-import { ToastController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { 
+	IonicPage, NavController, 
+	NavParams, ToastController, 
+	LoadingController, AlertController, 
+	Refresher
+} from 'ionic-angular';
+import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archivo';
+import { SubirPage } from '../subir/subir';
+import { LogueoPage } from '../logueo/logueo';
 
 @Component({
   selector: 'page-home',
@@ -13,18 +17,49 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 export class HomePage {
 
 	constructor(
-		public modCtrl: ModalController,
 		public _cap: CargaArchivoProvider,
 		public toastCtrl: ToastController,
+		public loadingCtrl:LoadingController,
+		public navCtrl: NavController, 
+		public alertCtrl: AlertController,
 		private socialSharing: SocialSharing) {
 
 	}
-
+	loading:any = '';
 	aunHayMas:boolean = true;
+	subirImagen =  SubirPage;
+	cerrarSesion() {
+		this.cerrar().then((result) => {
+	        if(result){
+	        	this.loading = this.loadingCtrl.create({
+							  content: 'Volvé rápido...'
+							});
 
-	mostrarModal(){
-		let modal = this.modCtrl.create(SubirPage);
-		modal.present()
+							this.loading.present();
+
+							setTimeout(()=>{
+							  this.loading.dismiss()
+							this.navCtrl.setRoot(LogueoPage)
+
+							}, 3000)
+						}
+		}) 
+	}
+
+	cerrar(): Promise<boolean> {
+		return new Promise((resolve, reject) =>{
+		    this.alertCtrl.create({
+				title: '¿Desea cerrar sesión?',
+				buttons: [{
+				text: 'No, me quedo',
+				 handler:()=> resolve(false)
+				},{
+				text: '¡Me voy!',
+				handler:()=> resolve(true)
+				}
+				]
+				}).present();
+		})
 	}
 
 	doInfinite(infiniteScroll) {
@@ -88,4 +123,8 @@ export class HomePage {
 	      duration: 2000
 	    }).present();
 	}
+
+
+
+
 }

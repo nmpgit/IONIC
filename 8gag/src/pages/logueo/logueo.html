@@ -1,17 +1,36 @@
-<ion-content padding>
-	<ion-list>
-	  <ion-item>
-	    <ion-label stacked>Username</ion-label>
-	    <ion-input type="text"></ion-input>
-	  </ion-item>
-	</ion-list>
+<ion-content padding text-center>
+	  <ion-grid>
+		<ion-row >
+			<ion-col class='top-20'><img src="./assets/imgs/logo.png" alt=""></ion-col>
+		</ion-row>
+	    <ion-row style='padding: 12%'>
+	      <ion-col >
+	      	<ion-list>
+			  <ion-item>
+			    <ion-label stacked>Usuario</ion-label>
+			    <ion-input type="text"></ion-input>
+			  </ion-item>
+			  <ion-item>
+			    <ion-label stacked>Contraseña</ion-label>
+			    <ion-input type="password"></ion-input>
+			  </ion-item>
+			</ion-list>
 
-	<button ion-button block color='primary' (click)='ingresar()'>
-		Ingresar
-	</button>
+			<button ion-button block (click)='showConfirm()'>
+				Ingresar
+			</button>
 
-	<span style="font-size: 8px" *ngIf='!mensaje' > El fin de esta pantalla es visualizar cuánto tiempo puedo 'pausar' la entrada y salida a esta pantalla (tiempo: 3 segundos)</span>
+			<!--<span style="font-size: 8px" *ngIf='!mensaje' > El fin de esta pantalla es visualizar cuánto tiempo puedo 'pausar' la entrada y salida a esta pantalla (tiempo: 3 segundos)</span>
 
-    <span *ngIf='mensaje' style="font-size: 8px">Espere 3 segundos para entrar al próximo componente..</span>
+		    <span *ngIf='mensaje' style="font-size: 8px">Espere 3 segundos para entrar al próximo componente..</span>-->
+	      </ion-col>
+	    </ion-row>
+	    <ion-row style='margin-top: 20%'>
+	      <ion-col>	
+	        <span class="divider line one-line">¿No sos usuario?</span>
+	        <button ion-button block class="registrate" [navPush]='registrarse'>Registrate</button>
+	      </ion-col>
+	    </ion-row>
 
+	  </ion-grid>
 </ion-content>

@@ -1,0 +1,56 @@
+page-home {
+	font-family: 'Bangers', cursive;
+	font-size: 3rem;
+
+	.divContenedor {
+		display: flex;
+		flex-wrap: wrap;
+		height: 100%;
+	}
+	.estiloDiv {
+		margin:3px;
+		flex-grow: 1;
+		width: 45%;
+		height: auto;
+		text-align:center;
+	}
+	.estiloDiv div {
+		margin-top:60%!important;
+	}
+
+	.animales {
+		background:#9c44ad
+	}
+	.chavo {
+		background:#3b8a3f
+	}
+	.personajes {
+		background:#338f9c
+	}
+	.personajes2 {
+		background:#325b85
+	}
+	.simpson {
+		background:#fcba03
+	}
+	.simpson2 {
+		background:#fcff2e
+	}
+	ion-footer {
+		width: 100%;
+		height: 26px;
+	}
+	ion-footer div {
+		width: 50%;
+		margin: auto; 
+		background-color: white; 
+		text-align: center; 
+		font-size: 1rem; 
+		font-family: Roboto; 
+		letter-spacing: 1.2px
+	}
+	.footer-md::before {
+		background-image: none!important;
+	}
+}	
+

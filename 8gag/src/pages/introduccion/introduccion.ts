@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { LogueoPage } from '../logueo/logueo';
 import { AjustesProvider } from '../../providers/ajustes/ajustes'
+import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archivo';
+
 @IonicPage()
 @Component({
   selector: 'page-introduccion',
@@ -13,6 +15,7 @@ export class IntroduccionPage {
 	mensaje:boolean = false;
 	texto:string='Espere 3 segundos para entrar al próximo componente..'
 	constructor(public navCtrl: NavController,
+				private cargaArchivo: CargaArchivoProvider,
 				public _ajustes: AjustesProvider) {
 	}
 

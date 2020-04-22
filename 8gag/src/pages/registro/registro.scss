@@ -1,0 +1,14 @@
+page-registro {
+	ion-navbar div {
+		background-color: transparent!important;
+	}
+	ion-navbar button {
+		color: white!important;
+	}
+	.header-md::after {
+		background-image: none;
+	}
+	.item-block {
+		text-align:center!important
+	}
+}

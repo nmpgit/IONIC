@@ -1,8 +1,8 @@
 page-introduccion {
-	.toolbar-background {
-	  background: #fff;
-	  border-color: transparent;
+	ion-content {
+		background-color:white!important
 	}
+	
 
 	.slide-zoom {
 	  height: 100%;
@@ -22,11 +22,15 @@ page-introduccion {
 	  font-weight: 500;
 	}
 
+	h2 {
+		color: #FFFFFF;
+		text-shadow: 0 0 0px #FFF, 0 0 0px #FFF, 0 0 0px #FFF, 0 0 10px #d9d9d9, 0 0 10px #d9d9d9, 0 0 10px #d9d9d9, 0 0 25px #d9d9d9, 0 0 25px #d9d9d9;
+	}
 	p {
 	  padding: 0 40px;
 	  font-size: 14px;
 	  line-height: 1.5;
-	  color: #60646B;
+	  color: #d9d9d9;
 
 	  b {
 	    color: #000000;

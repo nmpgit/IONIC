@@ -1,3 +1,11 @@
 page-subir {
-
+	ion-navbar div {
+		background-color: transparent!important;
+	}
+	ion-navbar button {
+		color: white!important;
+	}
+	.header-md::after {
+		background-image: none;
+	}
 }

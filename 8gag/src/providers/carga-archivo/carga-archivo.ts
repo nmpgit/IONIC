@@ -67,40 +67,47 @@ export class CargaArchivoProvider {
 		return this.afDB.list('/post', ref=> ref.orderByKey().limitToLast(1)) //para cargar el último.
 						.valueChanges()
 						.pipe(map( (post:any) =>{
-						 	this.lastKey = post[0].key
-							this.imagenes.push(post[0])
+							if(post.length > 0) {						
+							 	this.lastKey = post[0].key
+								this.imagenes.push(post[0])
+							}
+
 				        }));
 	}
 
 	cargarImagenesHome(){
-		return new Promise( (resolve, reject)=>{
 
-		  this.afDB.list('/post',
-		    ref=> ref.limitToLast(3)
-		             .orderByKey()
-		             .endAt( this.lastKey )
-		   ).valueChanges()
-		    .subscribe(  (posts:any)=>{
+		if (this.lastKey != null) { //hay cargada alguna imagen
+			return new Promise( (resolve, reject)=>{
 
-		      posts.pop();
+			  this.afDB.list('/post',
+			    ref=> ref.limitToLast(3)
+			             .orderByKey()
+			             .endAt( this.lastKey )
+			   ).valueChanges()
+			    .subscribe(  (posts:any)=>{
 
-		      if( posts.length == 0 ){
-		        console.log('Ya no hay más registros');
-		        resolve(false);
-		        return;
-		      }
+			      posts.pop();
 
-		      this.lastKey = posts[0].key;
+			      if( posts.length == 0 ){
+			        console.log('Ya no hay más registros');
+			        resolve(false);
+			        return;
+			      }
 
-		      for( let i = posts.length-1;  i >=0; i-- ){
-		        let post = posts[i];
-		        this.imagenes.push(post);
-		      }
+			      this.lastKey = posts[0].key;
 
-		      resolve(true);
+			      for( let i = posts.length-1;  i >=0; i-- ){
+			        let post = posts[i];
+			        this.imagenes.push(post);
+			      }
 
-		    });
-		});
+			      resolve(true);
+
+			    });
+			});
+		}
+
 	}
 	mostrarToast(mensaje:string) {
 	    this.toastCtrl.create({

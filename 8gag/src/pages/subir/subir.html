@@ -1,18 +1,11 @@
 <ion-header>
   <ion-navbar>
-  	<ion-buttons left>
-  		<button ion-button (click)='cerrarModal()' > 
-  			 Cerrar
-		</button>
-  	</ion-buttons>	
+<!--
   	<div>
 	    <ion-title text-center>{{titulo | placeholder:'Nuevo Post'}}</ion-title>
-  	</div>    <!--placeholder es el nombre del pipe. Lo que hace es cuando no titulo es null, osea no se escribió nada en el input de mas abajo, aparece Crear Post. Cuando hay dato, coloca el nombre.-->
-    <ion-buttons end>
-		<button ion-button (click)='crearPost()' [disabled]='titulo.length <=1 || imagenTomada.length <=1 '> 
-			 Crear
-		</button>
-  	</ion-buttons>	
+  	</div>    
+  	placeholder es el nombre del pipe. Lo que hace es cuando no titulo es null, osea no se escribió nada en el input de mas abajo, aparece Crear Post. Cuando hay dato, coloca el nombre.-->
+
   </ion-navbar>
 </ion-header>
 
@@ -23,7 +16,7 @@
 	    <ion-input type="text" [(ngModel)]='titulo'></ion-input>
 	  </ion-item>
 	  <ion-item *ngIf='imagenTomada'>
-	  	<img src="{{imagenTomada}}">
+	  	<img [src]="imagenTomada" />
 	  </ion-item>
 	</ion-list>
 
@@ -41,4 +34,12 @@
 			</ion-col>
 		</ion-row>
 	</ion-grid>
+
+	<ion-row style='margin-top: 20%'>
+    	<ion-col>	
+			<button ion-button block color='verde' (click)='crearPost()' [disabled]='titulo.length <=1 || imagenTomada.length <=1 '> 
+			Publicar {{imagenTomada}}
+			</button>
+		</ion-col>
+    </ion-row>
 </ion-content>
