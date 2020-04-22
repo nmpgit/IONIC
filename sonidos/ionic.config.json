@@ -1,6 +1,8 @@
 {
   "name": "sonidos",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "id": "d0495f1d"
 }

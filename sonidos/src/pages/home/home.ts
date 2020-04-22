@@ -8,15 +8,15 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   value:any = '';
-  divs:any[] = ['animales', 'chavo', 'personajes', 'personajes2', 'simpson', 'simpson2']
+  divs:any[] = ['maradona', 'chavo', 'personajes', 'personajes2', 'simpson', 'simpson2']
   constructor(public navCtrl:NavController) {
 
   }
   
   pushPage(pagina:string) {
     switch (pagina) {
-      case "animales":
-        this.navCtrl.push(DetalleHomePage, {div: 'animales'})
+      case "maradona":
+        this.navCtrl.push(DetalleHomePage, {div: 'maradona'})
         break;  
       case "chavo":
         this.navCtrl.push(DetalleHomePage, {div: 'chavo'})

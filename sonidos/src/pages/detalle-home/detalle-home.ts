@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { ANIMALES, PERSONAJES, PERSONAJES2, CHAVO, SIMPSON, SIMPSON2 } from "../../data/data.objetos";
+import { MARADONA, PERSONAJES, PERSONAJES2, CHAVO, SIMPSON, SIMPSON2 } from "../../data/data.objetos";
 import { Objeto } from "../../interfaces/objeto.interface";
 import { Refresher, reorderArray, NavParams, ToastController }  from "ionic-angular";
 
@@ -15,13 +15,13 @@ export class DetalleHomePage {
   	audio = new Audio();
 	audioTiempo: any;
 	value:any;
-	
+	objetoSonando:any;
 	constructor( public navParams: NavParams, public toastCtrl: ToastController) {
 		this.value = navParams.get('div');
 
 		switch (this.value) { //PARA NO CARGAR TODOS UNTOS SOLO CARGO EL QUE SE SELECCIONA.
-			case "animales":
-				this.objetos = ANIMALES;
+			case "maradona":
+				this.objetos = MARADONA;
 				break;  
 			case "chavo":
 				this.objetos = CHAVO;
@@ -36,7 +36,7 @@ export class DetalleHomePage {
 				this.objetos = SIMPSON;
 				break;  
 			case "simpson2":
-				this.objetos = SIMPSON;
+				this.objetos = SIMPSON2;
 				break;  
 			default:
 				break;
@@ -58,14 +58,14 @@ export class DetalleHomePage {
 	      objeto.reproduciendo = false;
 	      return;
 	    }
-
+	    this.objetoSonando = objeto;
 	    this.audio.src = objeto.audio;
 	    this.audio.load();
 	    this.audio.play();
 
 	    objeto.reproduciendo = true;
 
-	    this.audioTiempo = setTimeout( ()=> objeto.reproduciendo = false, objeto.duracion * 1000  );
+	    this.audioTiempo = setTimeout( ()=> objeto.reproduciendo = false, (objeto.duracion + 0.5) * 1000  );
 	}
 
 	private pausarAudio(objetoSeleccionado:Objeto){
@@ -90,7 +90,14 @@ export class DetalleHomePage {
 		this.mostrarToast('Reordenado!')
 	}
 
+	ionViewWillLeave() {
+		this.audio.pause();
+		this.audio.currentTime = 0;
+		if (this.objetoSonando){ 
+			this.objetoSonando.reproduciendo = false
+		}
 
+	}
   	mostrarToast(mensaje:string) {
 	    this.toastCtrl.create({
 	      message: mensaje,
