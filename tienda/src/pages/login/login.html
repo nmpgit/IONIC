@@ -10,6 +10,14 @@
 
 <ion-content padding>
 	<ion-list>
+	  <ion-item *ngIf='quiereRegistrarse'>
+	    <ion-label stacked>Nombre</ion-label>
+	    <ion-input type="text" [(ngModel)]='nombre'></ion-input>
+	  </ion-item>
+	  <ion-item *ngIf='quiereRegistrarse'>
+	    <ion-label stacked>Apellido</ion-label>
+	    <ion-input type="text" [(ngModel)]='apellido'></ion-input>
+	  </ion-item>
 	  <ion-item>
 	    <ion-label stacked>Username</ion-label>
 	    <ion-input type="email" [(ngModel)]='correo'></ion-input>
@@ -22,4 +30,27 @@
 	<button ion-button block color='primary' (click)='ingresar()' [disabled]='correo.length < 5 || password.length < 5'>
 		Ingresar
 	</button>
+	<ion-row>
+	    <ion-col class='top-5'>
+	    	<button ion-button color='facebook' icon-left block (click)="loginFb()" [disabled]='!quiereRegistrarse'> 
+	    		<ion-icon name='logo-facebook' ></ion-icon>Facebook
+	    	</button>
+		</ion-col>
+	    <ion-col class='top-5'>
+	    	<button ion-button color='google' icon-left block [disabled]='!quiereRegistrarse'> 
+	    		<ion-icon name='logo-google'></ion-icon>Google
+	    	</button>
+		</ion-col>
+	</ion-row>
+    <ion-row style='margin-top: 20%'>
+      <ion-col>	
+        <span class="divider line one-line">¿No sos usuario?</span>
+        <button ion-button block class="registrate" [ngClass]="quiereRegistrarse ? 'esUsuario' : 'registrate'" [navPush]='registrarse' (click)='quiereRegistrarse = !quiereRegistrarse'>
+        <span *ngIf='!quiereRegistrarse'>Registrate</span>
+        <span *ngIf='quiereRegistrarse'>Soy Usuario</span>
+    	</button>
+      </ion-col>
+    </ion-row>
+
+    <h4>{{user}}</h4>
 </ion-content>

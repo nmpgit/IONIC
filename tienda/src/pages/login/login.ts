@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 
 
 @Component({
@@ -8,11 +9,16 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
+	user:any = '';
 	correo:string = '';
 	password:string = '';
-	
-	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl:ViewController, private _userv:UsuarioProvider) {
+	quiereRegistrarse:boolean = false;
+	constructor(
+			public navCtrl: NavController, 
+			public navParams: NavParams, 
+			private viewCtrl:ViewController,
+			private fb: Facebook, 
+			private _userv:UsuarioProvider) {
 	}
 
 	ingresar(){
@@ -21,6 +27,17 @@ export class LoginPage {
 				this.viewCtrl.dismiss(true)
 			}
 		})
+	}
+
+	loginFb(){
+		this.fb.login(['public_profile', 'email'])
+		.then((res: FacebookLoginResponse) => this.getUserInfo(res.authResponse.userID))
+	}
+
+	getUserInfo(userId: string) {
+		this.fb.api('me?fields=' + ['name', 'email', 'first_name', 'last_name', 'picture.type(large)'].join(), null)
+		.then((res: any) => this.user = res)
+		.catch(e =>	console.log(e));
 	}
 
 }

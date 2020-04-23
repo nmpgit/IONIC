@@ -1,22 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+//COMPONENTES
 import { MyApp } from './app.component';
 import { ProductoPage } from "../pages/producto/producto"
 import { HomePage, BuscarPage, CategoriasPage, OrdenesDetallePage, OrdenesPage, CarritoPage, TabsPage, PorCategoriasPage, LoginPage } from '../pages/index.paginas';
 
-
+//SERVICIOS
 import { CarritoProvider } from '../providers/carrito/carrito';
 import { ProductosProvider } from '../providers/productos/productos';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 
+//NATIVE
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 
-import { IonicStorageModule } from '@ionic/storage';
 
+import { Facebook } from '@ionic-native/facebook';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,7 @@ import { IonicStorageModule } from '@ionic/storage';
     HttpClientModule,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Facebook,
     CarritoProvider,
     ProductosProvider,
     UsuarioProvider

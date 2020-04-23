@@ -121,24 +121,26 @@ export class CarritoProvider {
 		let peticion = this._http.post(url, {'items' : itemsEnviarStr})
 			.map(resp => resp)
 			.subscribe(data => {
-			 if( data.error ){
-                 // mostramos error
-                 this.alertCtrl.create({
-                   title: "Error en la orden",
-                   subTitle: data.mensaje,
-                   buttons: ["OK"]
-                 }).present();
-
-               }else{
-                 // todo bien!
-                this.items = [];
-                this.guardarStorage()
-                this.alertCtrl.create({
-                  title: "Orden realizada!",
-                  subTitle: "Nos contactaremos con usted próximamente",
-                  buttons: ["OK"]
-                }).present();
-               }
+				if (typeof(data) == 'undefined') {
+					this.realizarPedido()
+				}
+				if( typeof(data) != 'undefined' || data.error ){
+					// mostramos error
+					this.alertCtrl.create({
+						title: "Error en la orden",
+						subTitle: data.mensaje,
+						buttons: ["OK"]
+					}).present();
+				}else{
+					// todo bien!
+					this.items = [];
+					this.guardarStorage()
+						this.alertCtrl.create({
+						title: "Orden realizada!",
+						subTitle: "Nos contactaremos con usted próximamente",
+						buttons: ["OK"]
+					}).present();
+				}
 			})
 	}
 
