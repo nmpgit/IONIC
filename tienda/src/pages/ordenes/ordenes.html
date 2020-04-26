@@ -8,15 +8,15 @@
 	<div text-center *ngIf='isString(_carr.pedidosExistentes)' class="carrito_vacio">
 	Debe iniciar sesión para ver sus órdenes.
 	<ion-buttons>
-		<button ion-button block color='primary' (click)="_carr.loguearse()"> Ingresar </button>
+		<button ion-button block color='primary' (click)="_carr.loguearse('OrdenesPage')"> Ingresar </button>
 	</ion-buttons>
 	</div>
 
 	<ion-list *ngIf='!isString(_carr.pedidosExistentes)'>
-	    <ion-item *ngFor="let item of _carr.pedidosExistentes">
+	    <ion-item *ngFor="let item of _carr.pedidosExistentes" [navPush]="ordenesDetallePage" [navParams]="{ productos: item.detalle }">
 	      <h2>{{ item.creado_en }}</h2>
 	      <p>{{ item.detalle.length }} productos ordenados</p>
-	      <button ion-button clear item-right [navPush]="ordenesDetallePage" [navParams]="{ productos: item.detalle }"> Ver Detalle</button>
+	      <button ion-button clear item-right > Ver Detalle</button>
       	</ion-item>
 	</ion-list>
 </ion-content>

@@ -2,28 +2,44 @@ import 'rxjs/add/operator/map'
 import { HttpClientModule, HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { URL_SERVICIOS } from "../../config/url.servicios"
-import { AlertController, LoadingController, Platform } from 'ionic-angular';
+import { AlertController, Platform, LoadingController } from 'ionic-angular';
+import { HomePage } from '../../pages/index.paginas';
+import { ProductosProvider } from '../../providers/productos/productos';
+
 // Plugin storage
 import { Storage } from '@ionic/storage';
 @Injectable()
 export class UsuarioProvider {
 
 	usuario:string;
+	loading:any = '';
+	cargandoProductos:boolean = false;
 
-	constructor(private _http: HttpClient, private alertCtrl:AlertController,private loadingCtrl:LoadingController, private platform:Platform) {
+	constructor(
+		private _http: HttpClient, 
+		private alertCtrl:AlertController,
+		private loadingCtrl:LoadingController, 
+		private platform:Platform,
+		private _prod: ProductosProvider,
+
+		) {
+		
 		this.cargarStorage()
 	}
 
-	ingresar(correo, password){
+	ingresar(correo, password, quiereRegistrarse){
+		if (quiereRegistrarse) {
+			let url = URL_SERVICIOS + '/login/registrarse';
+		} else {
+			let url = URL_SERVICIOS + '/login/index';
+		}
 		let data = new HttpParams();
 		data = data.append('correo', correo)
 		data = data.append('contraseña', password)
-		let url = URL_SERVICIOS + '/login';
 
 		return this._http.post(url, data)
 				.map(informacion =>{
 					if (informacion.error) {
-						console.log(informacion)
 						this.alertCtrl.create({
 							title: informacion.mensaje,
 							subtitle: informacion.mensaje,
@@ -90,12 +106,30 @@ export class UsuarioProvider {
 		return promesa;
 	}
 
-  cerrarSesion(){
+	cerrarSesion(){
+			this.loading = this.loadingCtrl.create({
+				  content: 'Cerrando Sesion...'
+				});
+				this.cargandoProductos = true;
+				this.loading.present();
+				//this.mensaje = true;
 
-    this.usuario = null;
+				setTimeout(()=>{
+					this.loading.dismiss()
 
-    // guardar storage
-    this.guardarStorage();
-  }
+				    // guardar storage
+		    		this.usuario = null;
+				    this.guardarStorage();
+
+				    //Para dar efecto de recarga de pagina.
+					this._prod.cargarTodos(false)
+					this.cargandoProductos = false;
+				}, 2200)
+
+	}
+
+
+	
+
 
 }

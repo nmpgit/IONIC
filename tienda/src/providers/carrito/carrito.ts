@@ -3,12 +3,13 @@ import { AlertController, ModalController, Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
+import { ProductosProvider } from '../../providers/productos/productos';
 import 'rxjs/add/operator/map'
 import { URL_SERVICIOS } from "../../config/url.servicios"
 
 
 //pagina del modal
-import { LoginPage, CarritoPage } from '../../pages/index.paginas';
+import { HomePage, OrdenesPage, LoginPage, CarritoPage } from '../../pages/index.paginas';
 
 
 @Injectable()
@@ -21,6 +22,7 @@ export class CarritoProvider {
 				private alertCtrl:AlertController,
 				private platform:Platform,
 				private _userv: UsuarioProvider,
+				private _prod: ProductosProvider,
 				private modalCtrl:ModalController,
 				private storage:Storage) {
 		console.log('Hello CarritoProvider Provider');
@@ -48,7 +50,7 @@ export class CarritoProvider {
 		}).present();
 	}
 
-	loguearse(){
+	loguearse(paginaRuta){
 		let modal:any;
 		if(this._userv.usuario) {
 			//está logueado
@@ -58,10 +60,17 @@ export class CarritoProvider {
 			modal = this.modalCtrl.create(LoginPage)
 		}
 		modal.present();
-
-		modal.onDidDismiss((abrirCarrito:boolean)=>{
-			if (abrirCarrito) {
-				this.modalCtrl.create(CarritoPage)
+		modal.onDidDismiss((seLogueo:boolean)=>{
+			if (paginaRuta == 'HomePage') {
+			//si es para iniciar sesion arranco de cero el contador
+				this._prod.cargarTodos('inicioSesion')
+			}
+			if (seLogueo) {
+				if (paginaRuta == 'OrdenesPage') {
+						this.obtenerPedidos()
+				}
+			} else {
+				this.pedidosExistentes = 'Error'
 			}
 		})
 
@@ -121,24 +130,24 @@ export class CarritoProvider {
 		let peticion = this._http.post(url, {'items' : itemsEnviarStr})
 			.map(resp => resp)
 			.subscribe(data => {
-				if (typeof(data) == 'undefined') {
-					this.realizarPedido()
-				}
-				if( typeof(data) != 'undefined' || data.error ){
-					// mostramos error
-					this.alertCtrl.create({
-						title: "Error en la orden",
-						subTitle: data.mensaje,
-						buttons: ["OK"]
-					}).present();
-				}else{
-					// todo bien!
-					this.items = [];
-					this.guardarStorage()
-						this.alertCtrl.create({
-						title: "Orden realizada!",
-						subTitle: "Nos contactaremos con usted próximamente",
-						buttons: ["OK"]
+			if (data == 'undefined') {
+				 this.realizarPedido(); return
+			}
+			if( data.error ){
+				// mostramos error
+				this.alertCtrl.create({
+					title: "Error en la orden",
+					subTitle: data.mensaje,
+					buttons: ["OK"]
+				}).present();
+			}else{
+			 // todo bien!
+				this.items = [];
+				this.guardarStorage()
+				this.alertCtrl.create({
+					title: "Orden realizada!",
+					subTitle: "Nos contactaremos con usted próximamente",
+					buttons: ["OK"]
 					}).present();
 				}
 			})
@@ -164,6 +173,7 @@ export class CarritoProvider {
 
 
 	borrarPedido(nroPedido) {
+		let promesa = new Promise ((resolve, reject)=>{
 			let url = URL_SERVICIOS + "/pedidos/borrarPedido/" + this._userv.usuario + '/' + nroPedido;
 			this._http.delete(url)
 			.map(resp => resp)
@@ -174,14 +184,17 @@ export class CarritoProvider {
                    subTitle: data.mensaje,
                    buttons: ["OK"]
                  }).present();
-
                }else{
                 this.alertCtrl.create({
                   title: "Orden eliminada!",
                   subTitle: "",
                   buttons: ["OK"]
                 }).present();
+	            resolve();
                }
 			})
+		})
+				return promesa;
+
 	}
 }

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CarritoProvider } from '../../providers/carrito/carrito';
 import { PorCategoriasPage } from '../index.paginas';
 import { URL_IMAGENES } from "../../config/url.servicios"
-import { ProductoPage } from '../index.paginas';
+import { ProductoPage,OrdenesPage } from '../index.paginas';
 
 @Component({
   selector: 'page-ordenes-detalle',
@@ -18,4 +18,9 @@ export class OrdenesDetallePage {
 		this.ordenDetalle = this.navParams.get('productos');
 	}
 
+	borrarPedido(ordenId:any){
+		this._carr.borrarPedido(ordenId).then(()=>{
+			this.navCtrl.setRoot(OrdenesPage)
+		})
+	}
 }

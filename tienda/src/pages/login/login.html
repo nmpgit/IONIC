@@ -19,12 +19,18 @@
 	    <ion-input type="text" [(ngModel)]='apellido'></ion-input>
 	  </ion-item>
 	  <ion-item>
-	    <ion-label stacked>Username</ion-label>
+	    <ion-label stacked>Username <span>*</span></ion-label>
 	    <ion-input type="email" [(ngModel)]='correo'></ion-input>
 	  </ion-item>
 	  <ion-item>
-	    <ion-label stacked>Password</ion-label>
+	    <ion-label stacked>Password <span>*</span></ion-label>
 	    <ion-input type="password" [(ngModel)]='password'></ion-input>
+	    <span *ngIf='ingreseContrasena'>Ingrese una contraseña</span>
+	  </ion-item>
+	  <ion-item *ngIf='false'>
+	    <ion-label stacked>Password <span>*</span></ion-label>
+	    <ion-input type="password" [(ngModel)]='password'></ion-input>
+	    <span *ngIf='ingreseContrasena'>Ingrese una contraseña</span>
 	  </ion-item>
 	</ion-list>
 	<button ion-button block color='primary' (click)='ingresar()' [disabled]='correo.length < 5 || password.length < 5'>
@@ -51,6 +57,4 @@
     	</button>
       </ion-col>
     </ion-row>
-
-    <h4>{{user}}</h4>
 </ion-content>

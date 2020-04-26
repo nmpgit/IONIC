@@ -12,19 +12,22 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let item of _prod.porCategoria">
+    <ion-item *ngFor="let item of _prod.porCategoria" [navPush]='productoPage' [navParams]='{producto: item}'>
       <ion-thumbnail item-left>
-      		<img src='{{rutaImg}}{{item.codigo}}.jpg' [navPush]='productoPage' [navParams]='{producto: item }'>
+      		<img src='{{rutaImg}}{{item.codigo}}.jpg'>
       </ion-thumbnail>
       <h2>{{ item.producto }}</h2>
       <p> {{ item.proveedor }}</p>
-      <button ion-button clear item-right
-              [navPush]="productoPage"
-              [navParams]="{ producto: item }">
+      <button ion-button clear item-right>
         Ver
       </button>
     </ion-item>
 
   </ion-list>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="siguientePagina($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

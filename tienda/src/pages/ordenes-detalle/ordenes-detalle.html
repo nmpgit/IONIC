@@ -7,7 +7,7 @@
 
 <ion-content text-center>
   <ion-list>
-    <ion-item *ngFor="let item of ordenDetalle">
+    <ion-item *ngFor="let item of ordenDetalle" [navPush]='productoPage' [navParams]='{producto: item }'>
       <img src='{{rutaImg}}{{item.codigo}}.jpg'>
       <h5>{{ item.producto }}</h5>
       <p>
@@ -18,7 +18,7 @@
       </p>
     </ion-item>
   </ion-list>
-  <button ion-button block color="danger" (click)="_carr.borrarPedido(ordenDetalle[0].orden_id)">
+  <button ion-button block color="danger" (click)="borrarPedido(ordenDetalle[0].orden_id)">
     Borrar orden
   </button>
 </ion-content>

@@ -20,6 +20,12 @@ export class PorCategoriasPage {
 
 	}
 
-
+	siguientePagina(infiniteScroll){
+		console.log('arrnca')
+		this._prod.mostrarPorCategoria(this.categoria.id)
+			.then(()=>{
+				infiniteScroll.complete();
+			})
+	}
 
 }

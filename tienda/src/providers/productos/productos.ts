@@ -13,7 +13,7 @@ export class ProductosProvider{
 	categorias:any[] = [];
 	porCategoria:any[] = [];
 	constructor(private _http: HttpClient) {
-		this.cargarTodos();
+		this.cargarTodos(false);
 	}
 
 	cargarCategorias(){
@@ -28,7 +28,12 @@ export class ProductosProvider{
 			})
 	}
 
-	cargarTodos(){
+	cargarTodos(motivo:any){
+
+		//si es para iniciar sesion arranco de cero el contador
+		if (motivo == 'inicioSesion'){
+			this.pagina = 0;
+		}
 		let promesa = new Promise ((resolve, reject)=>{
 			let url = URL_SERVICIOS + "/productos/obtenerTodos/" + this.pagina
 			this._http.get(url)
@@ -48,18 +53,24 @@ export class ProductosProvider{
 	}
 
 	mostrarPorCategoria(categoria:string){
-		this.porCategoria = [];
-		let url = URL_SERVICIOS + "/productos/obtenerPorTipo/" + categoria + '/' + this.paginado
-			this._http.get(url)
-			.map(resp => resp)
-			.subscribe(data => {
-				console.log(data)
-				if (data.error) {
+		let promesa = new Promise ((resolve, reject)=>{
 
-				} else {
-					this.porCategoria.push( ...data.productos);
-				}
-			})
+			let url = URL_SERVICIOS + "/productos/obtenerPorTipo/" + categoria + '/' + this.paginado
+			console.log(url)
+				this._http.get(url)
+				.map(resp => resp)
+				.subscribe(data => {
+					console.log(data)
+					if (data.error) {
+
+					} else {
+						this.porCategoria.push( ...data.productos);
+						this.paginado +=1;
+
+					}
+				})
+		})
+		return promesa;
 	}
 
 

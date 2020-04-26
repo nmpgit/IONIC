@@ -7,7 +7,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 //COMPONENTES
 import { MyApp } from './app.component';
 import { ProductoPage } from "../pages/producto/producto"
-import { HomePage, BuscarPage, CategoriasPage, OrdenesDetallePage, OrdenesPage, CarritoPage, TabsPage, PorCategoriasPage, LoginPage } from '../pages/index.paginas';
+import { HomePage, BuscarPage, CategoriasPage, SplashPage, OrdenesDetallePage, OrdenesPage, CarritoPage, TabsPage, PorCategoriasPage, LoginPage } from '../pages/index.paginas';
 
 //SERVICIOS
 import { CarritoProvider } from '../providers/carrito/carrito';
@@ -33,6 +33,7 @@ import { Facebook } from '@ionic-native/facebook';
     OrdenesDetallePage,
     CarritoPage,
     BuscarPage,
+    SplashPage,
     TabsPage,
     LoginPage
   ],
@@ -52,6 +53,7 @@ import { Facebook } from '@ionic-native/facebook';
     CarritoPage,
     OrdenesPage,
     BuscarPage,
+    SplashPage,
     PorCategoriasPage,
     OrdenesDetallePage,
     TabsPage,
@@ -65,7 +67,7 @@ import { Facebook } from '@ionic-native/facebook';
     Facebook,
     CarritoProvider,
     ProductosProvider,
-    UsuarioProvider
+    UsuarioProvider,
   ]
 })
 export class AppModule {}

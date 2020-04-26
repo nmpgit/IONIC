@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar>
  	<ion-buttons left>
- 		<button ion-button *ngIf="_userv.activo()" (click)="_userv.cerrarSesion()">
+ 		<button ion-button *ngIf="_userv.activo()" (click)="cerrarSesion()">
         Salir
       </button>
-      <button ion-button *ngIf="!_userv.activo()" (click)="_carr.loguearse()">
+      <button ion-button *ngIf="!_userv.activo()" (click)="iniciarSesion()">
         Ingresar
       </button>
 	</ion-buttons>
 	<ion-buttons right>
-		<button ion-button icon-only (click)='_carr.loguearse()'>
+		<button ion-button icon-only (click)='_carr.loguearse()' *ngIf="_userv.activo()">
 			<ion-icon name='cart'></ion-icon>
 			<ion-badge color='danger' class='carrito-numero'>{{_carr.items.length}}</ion-badge>
 		</button>
@@ -20,11 +20,15 @@
 </ion-header>
 
 <ion-content padding>
+	<ion-row *ngIf="_userv.cargandoProductos"> 
+		<ion-spinner  style='margin:auto' name="crescent"></ion-spinner>
+	</ion-row>	
+
 	<ion-grid>
-		<ion-row>	
-			  <ion-col col-6 *ngFor="let item of _prod.productos">
+		<ion-row *ngIf="!_userv.cargandoProductos" >	
+			  <ion-col col-5 *ngFor="let item of _prod.productos" [navPush]='productoPage' [navParams]='{producto: item }'>
 			
-				<img src='{{rutaImg}}{{item.codigo}}.jpg' [navPush]='productoPage' [navParams]='{producto: item }'>
+				<img src='{{rutaImg}}{{item.codigo}}.jpg' >
 				<p>
 					{{item.producto}} <br> <strong>{{item.precio_compra | currency: 'USD':true}}</strong>
 				</p>

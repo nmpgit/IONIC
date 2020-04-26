@@ -1,3 +1,28 @@
 page-categorias {
 
-}
+	font-size: 3rem;
+
+	.divContenedor {
+		display: flex;
+		flex-wrap: wrap;
+		height: 100%;
+	}
+	.estiloDiv {
+		margin:3px;
+		flex-grow: 1;
+		width: 45%;
+		height: auto;
+		max-height:50%;
+		border: 1px solid #488601;
+		text-align:center;
+		border-radius:30%;
+	}
+	.estiloDiv div {
+		margin-top:20%!important;
+	}
+
+	ion-icon {
+		color:#488601;
+	}
+}	
+
