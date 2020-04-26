@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HomePage } from '../index.paginas'
+import { TabsPage } from '../index.paginas'
 
 
 @Component({
@@ -16,7 +16,7 @@ export class SplashPage {
   ionViewDidEnter() {
 
     setTimeout(() => {
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(TabsPage);
     }, 4500);
 
 
