@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from "../../config/url.servicios"
 import { AlertController, Platform, LoadingController } from 'ionic-angular';
 import { HomePage } from '../../pages/index.paginas';
 import { ProductosProvider } from '../../providers/productos/productos';
+import { DatoInterface } from '../../interfaces/objeto.interface';
 
 // Plugin storage
 import { Storage } from '@ionic/storage';
@@ -14,12 +15,13 @@ export class UsuarioProvider {
 	usuario:string;
 	loading:any = '';
 	cargandoProductos:boolean = false;
-
+	resultadosBusqueda:any;
 	constructor(
 		private _http: HttpClient, 
 		private alertCtrl:AlertController,
 		private loadingCtrl:LoadingController, 
 		private platform:Platform,
+		private storage:Storage,
 		private _prod: ProductosProvider,
 
 		) {
@@ -27,26 +29,30 @@ export class UsuarioProvider {
 		this.cargarStorage()
 	}
 
+	
 	ingresar(correo, password, quiereRegistrarse){
+		let url;
+
 		if (quiereRegistrarse) {
-			let url = URL_SERVICIOS + '/login/registrarse';
+			url = URL_SERVICIOS + '/login/registrarse';
 		} else {
-			let url = URL_SERVICIOS + '/login/index';
+			url = URL_SERVICIOS + '/login/index';
 		}
 		let data = new HttpParams();
 		data = data.append('correo', correo)
 		data = data.append('contraseña', password)
 
 		return this._http.post(url, data)
-				.map(informacion =>{
+				.map((informacion:DatoInterface) => {
+
 					if (informacion.error) {
 						this.alertCtrl.create({
 							title: informacion.mensaje,
-							subtitle: informacion.mensaje,
+							subTitle: informacion.mensaje,
 							buttons: ['OK']
 						}).present()
 					} else {
-						this.usuario = informacion.id_usuario
+						this.usuario = informacion.mensaje
 						this.guardarStorage()
 					}
 				})

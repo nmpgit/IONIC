@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from "../../config/url.servicios"
+import { DatoInterface } from '../../interfaces/objeto.interface';
 
 @Injectable()
 export class ProductosProvider{
@@ -20,10 +21,10 @@ export class ProductosProvider{
 		let url = URL_SERVICIOS + "/lineas"
 			this._http.get(url)
 			.map(resp => resp)
-			.subscribe(data => {
+			.subscribe((data:DatoInterface) => {
 				if (data.error) {
 				} else {
-					this.categorias.push( ...data.lineas);
+					this.categorias.push( ...data.mensaje);
 				}	
 			})
 	}
@@ -38,11 +39,11 @@ export class ProductosProvider{
 			let url = URL_SERVICIOS + "/productos/obtenerTodos/" + this.pagina
 			this._http.get(url)
 			.map(resp => resp)
-			.subscribe(data => {
+			.subscribe((data:DatoInterface) => {
 				if (data.error) {
 
 				} else {
-					this.productos.push( ...data.productos);
+					this.productos.push( ...data.mensaje);
 					this.pagina +=1;
 				}
 				resolve();
@@ -59,12 +60,12 @@ export class ProductosProvider{
 			console.log(url)
 				this._http.get(url)
 				.map(resp => resp)
-				.subscribe(data => {
+				.subscribe((data:DatoInterface) => {
 					console.log(data)
 					if (data.error) {
 
 					} else {
-						this.porCategoria.push( ...data.productos);
+						this.porCategoria.push( ...data.mensaje);
 						this.paginado +=1;
 
 					}
@@ -78,9 +79,8 @@ export class ProductosProvider{
 	buscarProducto( termino:string ){
 		let url = URL_SERVICIOS + "/productos/buscar/" + termino;
 		this._http.get( url )
-		        .subscribe( resp =>{
-
-		          return this.resultadosBusqueda = resp.productos;
+		        .subscribe((data:DatoInterface) =>{
+		          return this.resultadosBusqueda = data.mensaje;
 		        });
 	}
 }

@@ -6,6 +6,7 @@ import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { ProductosProvider } from '../../providers/productos/productos';
 import 'rxjs/add/operator/map'
 import { URL_SERVICIOS } from "../../config/url.servicios"
+import { DatoInterface } from '../../interfaces/objeto.interface';
 
 
 //pagina del modal
@@ -119,7 +120,6 @@ export class CarritoProvider {
 
 
 	realizarPedido() {
-		let data = new HttpParams();
 		let itemsEnviarArray = [];
 		for (var i = 0; i < this.items.length; ++i) {
 			itemsEnviarArray.push(this.items[i].codigo)
@@ -129,10 +129,7 @@ export class CarritoProvider {
 
 		let peticion = this._http.post(url, {'items' : itemsEnviarStr})
 			.map(resp => resp)
-			.subscribe(data => {
-			if (data == 'undefined') {
-				 this.realizarPedido(); return
-			}
+			.subscribe((data:DatoInterface)=> {
 			if( data.error ){
 				// mostramos error
 				this.alertCtrl.create({
@@ -158,11 +155,11 @@ export class CarritoProvider {
 			let url = URL_SERVICIOS + "/pedidos/obtenerPedidos/" + this._userv.usuario;
 				this._http.get(url)
 				.map(resp => resp)
-				.subscribe(data => {
+				.subscribe((data:DatoInterface) => {
 					if(data.error) {
 
 					} else {
-						this.pedidosExistentes = data.ordenes	
+						this.pedidosExistentes = data.mensaje	
 					}
 				})
 		} else {
@@ -177,7 +174,7 @@ export class CarritoProvider {
 			let url = URL_SERVICIOS + "/pedidos/borrarPedido/" + this._userv.usuario + '/' + nroPedido;
 			this._http.delete(url)
 			.map(resp => resp)
-			.subscribe(data => {
+			.subscribe((data:DatoInterface) => {
 			 if( data.error ){
                  this.alertCtrl.create({
                    title: "No se pudo eliminar",

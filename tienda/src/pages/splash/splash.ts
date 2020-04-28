@@ -19,7 +19,7 @@ export class SplashPage {
       this.navCtrl.setRoot(TabsPage);
     }, 4500);
 
-
+/*
     setTimeout(() => {
 		let autor = document.getElementsByClassName('autor');
 		autor[0].style.visibility = 'visible';
@@ -36,6 +36,7 @@ export class SplashPage {
 		imag[0].style.opacity = 0;
 
     }, 4500);
+*/
   }
 
 }
