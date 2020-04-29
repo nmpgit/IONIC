@@ -7,14 +7,11 @@ import { TabsPage, MapaPage, SplashPage } from '../pages/index.paginas'
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = SplashPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, modalCtrl: ModalController) {
     platform.ready().then(() => {
       statusBar.styleDefault();
-      let splash = modalCtrl.create(SplashPage);
-      splash.present();
-    }).then(()=>{
       splashScreen.hide();
     })
 

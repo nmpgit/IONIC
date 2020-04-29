@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<img src="{{imagen}}" alt="">
+	<p style="color: white; opacity: 0.6; text-align: center; letter-spacing: 2px">{{texto}}</p>
+  	<ion-row>
+  		<ion-col text-right>
+			<button ion-button clear small icon-left (click)='socialShare("Facebook", item.titulo, item.img)'>
+				<ion-icon name='logo-facebook'></ion-icon>
+			</button>
+	          <button ion-button clear small icon-left (click)='socialShare("Instagram", item.titulo, item.img)'>
+	          <ion-icon name='logo-instagram'></ion-icon>
+	        </button>
+	          <button ion-button clear small icon-left (click)='socialShare("Twitter", item.titulo, item.img)'>
+	          <ion-icon name='logo-twitter'></ion-icon>
+	        </button>
+	          <button ion-button clear small icon-left (click)='socialShare("Whatsapp", item.titulo, item.img)'>
+	          <ion-icon name='logo-whatsapp'></ion-icon>
+	        </button>
+  		</ion-col>
+  	</ion-row> 
+</ion-content>

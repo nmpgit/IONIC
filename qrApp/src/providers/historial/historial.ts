@@ -26,7 +26,6 @@ export class HistorialService {
 		private calendar: Calendar,
 		private emailComposer: EmailComposer
 		) {		
-		this.cargarStorage()
 	}
 
 	agregarHistorial(texto:string){
@@ -74,10 +73,6 @@ export class HistorialService {
 		}
 	}
 	
-	cargarHistorial(){
-		return this._historial
-	}
-
 	crearEvento (scandata) {
 		let infoEvento = scandata.info
 		//metodo de corte: encuentro la palabra desde que quiero cortar y le sumo la cantidad que falta hasta llegar al texto variable
@@ -207,6 +202,7 @@ export class HistorialService {
 
 
 	guardarStorage(){
+		console.log(this._historial)
 		if (this.platform.is('cordova')) {  
 			// Dispositivo
 			this.storage.set('qrStorage', this._historial)
@@ -215,7 +211,9 @@ export class HistorialService {
 			localStorage.setItem('qrStorage', JSON.stringify(this._historial))
 		}
 	}
-
+	cargarHistorial(){
+		return this._historial
+	}
 	cargarStorage(){
 		let promesa = new Promise ((resolve, reject) => {
 			if (this.platform.is('cordova')) {  

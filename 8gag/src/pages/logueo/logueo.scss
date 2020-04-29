@@ -3,11 +3,22 @@
 
 page-logueo {
 
-
-
   img {
     max-width:50%;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 5s;
+    animation-name: spinner-loading
   }
+
+  @keyframes spinner-loading{
+    0% {
+        transform: rotate(0deg)
+    } to {
+        transform: rotate(1turn)
+    }
+  }
+
 
   .top-20 {
     margin-top:20%

@@ -10,33 +10,35 @@ import { TabsPage } from '../index.paginas'
 })
 export class SplashPage {
 
+
   constructor(public viewCtrl: ViewController, public navCtrl:NavController,  public navParams: NavParams, public splashScreen: SplashScreen) {
   }
 
   ionViewDidEnter() {
+    let autor = document.getElementsByClassName('autor');
+    let imag = document.getElementsByClassName('img');
 
     setTimeout(() => {
       this.navCtrl.setRoot(TabsPage);
-    }, 4500);
+    }, 3700);
 
-/*
-    setTimeout(() => {
-		let autor = document.getElementsByClassName('autor');
-		autor[0].style.visibility = 'visible';
-		autor[0].style.opacity = 1;
-
-    }, 500);
 
     setTimeout(() => {
-		let autor = document.getElementsByClassName('autor');
-		let imag = document.getElementsByClassName('img');
-		autor[0].style.visibility = 'hidden';
-		imag[0].style.visibility = 'hidden';
-		autor[0].style.opacity = 0;
-		imag[0].style.opacity = 0;
+    (autor[0] as HTMLElement).style.visibility = 'visible';
+    (autor[0] as HTMLElement).style.opacity = '1';
+    (imag[0] as HTMLElement).style.visibility = 'visible';
+    (imag[0] as HTMLElement).style.opacity = '1';
 
-    }, 4500);
-*/
+    }, 300);
+
+    setTimeout(() => {
+    (autor[0] as HTMLElement).style.visibility = 'hidden';
+    (imag[0] as HTMLElement).style.visibility = 'hidden';
+    (autor[0] as HTMLElement).style.opacity = '0';
+    (imag[0] as HTMLElement).style.opacity = '0';
+
+    }, 3500);
   }
+
 
 }

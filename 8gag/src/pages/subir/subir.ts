@@ -39,11 +39,8 @@ export class SubirPage {
 		}
 
 		this.camera.getPicture(options).then((imageData) => {
-		 // imageData is either a base64 encoded string or a file URI
-		 // If it's base64 (DATA_URL):
-		 this.imagenTomada = 'data:image/jpg;base64,' + imageData;
-		 this.imagen64 = imageData
-		 console.log(this.imagen64)
+		this.imagenTomada = 'data:image/jpg;base64,' + imageData;
+		this.imagen64 = imageData
 
 		}, (err) => {
 		 console.log('Error:' + JSON.stringify(err))
@@ -61,7 +58,6 @@ export class SubirPage {
 		  for (var i = 0; i < results.length; i++) {
 		      this.imagenTomada = this.sanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + results[i]);
 		      this.imagen64 = results[i];
-		      console.log(this.imagen64)
 		  }	
 		}, (err) => { 
 			 console.log('Esto es un error:' + JSON.stringify(err))
@@ -73,7 +69,7 @@ export class SubirPage {
 			img: this.imagen64,
 			titulo: this.titulo
 		}
-
+		console.log('TITULO: ', archivo.titulo)
 		this.cargaArchivo.cargarImagenFirebase(archivo)
 		.then(()=>this.cerrarModal() )
 

@@ -20,7 +20,8 @@ $colors: (
   danger:     	#f53d3d,
   light:      	#f4f4f4,
   dark:       	#000000,
-  verde:		#34eb95
+  verde:		#34eb95,
+  blanco:		#ffffff
 );
 
 
@@ -36,7 +37,7 @@ ion-content {
 	text-align:center
 }
 
-.alert-md .alert-head .alert-message .alert-title {
+.alert-md, .alert-head, .alert-message, .alert-title {
     font-size: 18px!important;
     text-align: center!important;
 }

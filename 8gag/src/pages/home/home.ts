@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SocialSharing } from '@ionic-native/social-sharing';
 import { 
 	IonicPage, NavController, 
 	NavParams, ToastController, 
@@ -9,6 +8,7 @@ import {
 import { CargaArchivoProvider } from '../../providers/carga-archivo/carga-archivo';
 import { SubirPage } from '../subir/subir';
 import { LogueoPage } from '../logueo/logueo';
+import { ModalimgPage } from '../modalimg/modalimg';
 
 @Component({
   selector: 'page-home',
@@ -18,21 +18,21 @@ export class HomePage {
 
 	constructor(
 		public _cap: CargaArchivoProvider,
-		public toastCtrl: ToastController,
 		public loadingCtrl:LoadingController,
 		public navCtrl: NavController, 
-		public alertCtrl: AlertController,
-		private socialSharing: SocialSharing) {
-
+		public alertCtrl: AlertController){
 	}
+
+
 	loading:any = '';
 	aunHayMas:boolean = true;
 	subirImagen =  SubirPage;
+	modalPage = ModalimgPage;
 	cerrarSesion() {
 		this.cerrar().then((result) => {
 	        if(result){
 	        	this.loading = this.loadingCtrl.create({
-							  content: 'Volvé rápido...'
+							  content: 'Te esperamos!'
 							});
 
 							this.loading.present();
@@ -78,51 +78,6 @@ export class HomePage {
  			refresher.complete();
  	    }, 2000);
   	}
-
-  	socialShare(redSocial:string, titulo:string, img:string){
-  		console.log(redSocial);
-  		switch (redSocial) {
-  			case "Facebook":
-				this.socialSharing.shareViaFacebook(titulo, img, img)
-				.then(() => {
-	  				console.log('todo bomba')
-	  			}).catch((error) => {
-			  		this.mostrarToast('Falló el comparto x Facebook.' + error)
-				});
-  				break;
-  			case "Twitter":
-				this.socialSharing.shareViaTwitter(titulo, img, img)
-				.then(() => {
-	  				console.log('todo bomba')
-	  			}).catch((error) => {
-			  		this.mostrarToast('Falló el comparto x Twitter.' + error)
-				});
-  				break;
-  			case "Instagram":
-				this.socialSharing.shareViaInstagram(titulo, img)
-				.then(() => {
-	  				console.log('todo bomba')
-	  			}).catch((error) => {
-			  		this.mostrarToast('Falló el comparto x Instagram.' + error)
-				});
-  				break;
-  			case "Whatsapp":
-				this.socialSharing.shareViaWhatsApp(titulo, img, img)
-				.then(() => {
-	  				console.log('todo bomba')
-	  			}).catch((error) => {
-			  		this.mostrarToast('Falló el comparto x Whatsapp.' + error)
-				});
-  				break;
-  		}  		
-  	}
-
-  	mostrarToast(mensaje:string) {
-	    this.toastCtrl.create({
-	      message: mensaje,
-	      duration: 2000
-	    }).present();
-	}
 
 
 

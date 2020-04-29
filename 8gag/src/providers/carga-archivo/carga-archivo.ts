@@ -13,8 +13,7 @@ export class CargaArchivoProvider {
 	constructor(	public toastCtrl: ToastController,
 					public afDB: AngularFireDatabase,
 				) {
-		this.cargarUltimoKey()
-			.subscribe( ()=>this.cargarImagenesHome())//es suscribe porque recibe un observable; 
+		//this.cargarUltimoKey().subscribe( ()=>this.cargarImagenesHome())//es suscribe porque recibe un observable; 
 	}
 
 	cargarImagenFirebase(archivo:ArchivoSubir){
@@ -36,9 +35,9 @@ export class CargaArchivoProvider {
 					},
 					()=>{
 						//TODO BIEN!!
-						this.mostrarToast('Archivo cargado')
               			let url = uploadTask.snapshot.ref.getDownloadURL()
               						.then(urlImage => {
+											this.mostrarToast('Archivo cargado')
               				 				this.crearPost(archivo.titulo, urlImage, nombreArchivo);
 									})
               						.catch((error) => {
@@ -53,6 +52,7 @@ export class CargaArchivoProvider {
 	}	
 
 	private crearPost (tituloImagenSubida:string, urlImagenSubida:string, nombreImagenSubida:string) {
+		
 		let post:ArchivoSubir = {
 			img: urlImagenSubida,
 			titulo: tituloImagenSubida,
@@ -60,11 +60,11 @@ export class CargaArchivoProvider {
 		}
 		//		this.afDB.list('/post').push;
 		this.afDB.object(`/post/${ nombreImagenSubida }`).update(post); //post es el nombre de la ruta de firebase
-		this.imagenes.push(post)
+		this.imagenes.unshift(post)
 	}
 
 	cargarUltimoKey(){
-		return this.afDB.list('/post', ref=> ref.orderByKey().limitToLast(1)) //para cargar el último.
+		/*return this.afDB.list('/post', ref=> ref.orderByKey().limitToLast(1)) //para cargar el último.
 						.valueChanges()
 						.pipe(map( (post:any) =>{
 							if(post.length > 0) {						
@@ -72,22 +72,21 @@ export class CargaArchivoProvider {
 								this.imagenes.push(post[0])
 							}
 
-				        }));
+				        }));*/
 	}
 
 	cargarImagenesHome(){
 
-		if (this.lastKey != null) { //hay cargada alguna imagen
+		//if (this.lastKey != null) { //hay cargada alguna imagen
 			return new Promise( (resolve, reject)=>{
-
 			  this.afDB.list('/post',
-			    ref=> ref.limitToLast(3)
-			             .orderByKey()
-			             .endAt( this.lastKey )
+			    ref=> ref.limitToLast(30)
+			            
 			   ).valueChanges()
 			    .subscribe(  (posts:any)=>{
-
-			      posts.pop();
+			    	this.imagenes = posts
+			    	this.imagenes = this.imagenes.reverse()
+			     /*posts.pop();
 
 			      if( posts.length == 0 ){
 			        console.log('Ya no hay más registros');
@@ -101,12 +100,12 @@ export class CargaArchivoProvider {
 			        let post = posts[i];
 			        this.imagenes.push(post);
 			      }
+*/
 
 			      resolve(true);
-
 			    });
 			});
-		}
+//		}
 
 	}
 	mostrarToast(mensaje:string) {

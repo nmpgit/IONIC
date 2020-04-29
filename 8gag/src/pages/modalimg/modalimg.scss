@@ -1,0 +1,11 @@
+page-modalimg {
+	.toolbar-background-md {
+		background: transparent!important;
+	}
+	ion-navbar button {
+		color: white!important;
+	}
+	.header-md::after {
+		background-image: none;
+	}
+}

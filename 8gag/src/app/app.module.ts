@@ -11,6 +11,8 @@ import { SubirPage } from '../pages/subir/subir';
 import { IntroduccionPage } from '../pages/introduccion/introduccion';
 import { LogueoPage } from '../pages/logueo/logueo';
 import { RegistroPage } from '../pages/registro/registro';
+import { ModalimgPage } from '../pages/modalimg/modalimg';
+import { SplashPage } from '../pages/splash/splash';
 
 //plgins
 import { Camera } from '@ionic-native/camera';
@@ -49,7 +51,9 @@ export const firebaseConfig = {
     SubirPage,
     IntroduccionPage,
     LogueoPage,
-    RegistroPage
+    RegistroPage,
+    ModalimgPage,
+    SplashPage
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ export const firebaseConfig = {
     SubirPage,
     IntroduccionPage,
     LogueoPage,
-    RegistroPage
+    RegistroPage,
+    ModalimgPage,
+    SplashPage
   ],
   providers: [
     StatusBar,

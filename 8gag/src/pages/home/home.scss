@@ -1,4 +1,16 @@
 page-home {
-
-
+	.general {
+  		display: flex;
+	   	flex-flow: row wrap;
+	    width:100%;
+ 		margin:5%;
+	}
+	.particular {
+		max-height: 22%; 
+		max-width: 22%; 
+		margin:1.4% 0.3%;
+	}
+	.particular img {
+		border-radius:6px!important;
+	}
 }

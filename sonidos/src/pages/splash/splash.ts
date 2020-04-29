@@ -14,6 +14,7 @@ export class SplashPage {
   }
 
   ionViewDidEnter() {
+    let autor = document.getElementsByClassName('autor');
 
     setTimeout(() => {
       this.navCtrl.setRoot(HomePage);
@@ -21,20 +22,17 @@ export class SplashPage {
 
 
     setTimeout(() => {
-		let autor = document.getElementsByClassName('autor');
-		console.log(autor[0])
-		autor[0].style.visibility = 'visible';
-		autor[0].style.opacity = 1;
+		(autor[0] as HTMLElement).style.visibility = 'visible';
+		(autor[0] as HTMLElement).style.opacity = '1';
 
     }, 1500);
 
     setTimeout(() => {
-		let autor = document.getElementsByClassName('autor');
 		let imag = document.getElementsByClassName('img');
-		autor[0].style.visibility = 'hidden';
-		imag[0].style.visibility = 'hidden';
-		autor[0].style.opacity = 0;
-		imag[0].style.opacity = 0;
+		(autor[0] as HTMLElement).style.visibility = 'hidden';
+		(imag[0] as HTMLElement).style.visibility = 'hidden';
+		(autor[0] as HTMLElement).style.opacity = '0';
+		(imag[0] as HTMLElement).style.opacity = '0';
 
     }, 4000);
   }

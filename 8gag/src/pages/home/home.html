@@ -1,52 +1,28 @@
-
-
 <ion-content style='position:relative;'>
   <ion-refresher (ionRefresh)="recargarPagina($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
+  <div class="general">
+    <div class="particular" *ngFor="let item of _cap.imagenes" [navPush]='modalPage' [navParams]="{ imagen: [item.img, item.titulo] }">
+      <img src="{{item.img}}">
+    </div>
+  </div>
 
-  <ion-card *ngFor="let item of _cap.imagenes">
-  	<img src="{{item.img}}">
-  	<ion-card-content>
-	  	<ion-card-title>
-	  			{{item.titulo}}
-	  	</ion-card-title>
-  	</ion-card-content>
-  	<ion-row>
-  		<ion-col text-right>
-  			<button ion-button clear small icon-left (click)='socialShare("Facebook", item.titulo, item.img)'>
-  				<ion-icon name='logo-facebook'></ion-icon>
-  			</button>
-          <button ion-button clear small icon-left (click)='socialShare("Instagram", item.titulo, item.img)'>
-          <ion-icon name='logo-instagram'></ion-icon>
-        </button>
-          <button ion-button clear small icon-left (click)='socialShare("Twitter", item.titulo, item.img)'>
-          <ion-icon name='logo-twitter'></ion-icon>
-        </button>
-          <button ion-button clear small icon-left (click)='socialShare("Whatsapp", item.titulo, item.img)'>
-          <ion-icon name='logo-whatsapp'></ion-icon>
-        </button>
-  		</ion-col>
-  	</ion-row> 
-
-  </ion-card>
-
-
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>
+
 <ion-footer class="ion-no-border">
   
-  <ion-buttons style='opacity:0.7;display: flex; justify-content: space-between; width:100%;position:absolute; bottom:0'>
-    <button ion-fab color="verde" [navPush]='subirImagen'>
-      <ion-icon name="photos"></ion-icon>
+  <ion-buttons style='display: flex; justify-content: space-between; width:100%;position:absolute; bottom:0'>
+    <button ion-fab color="blanco" [navPush]='subirImagen'>
+      <ion-icon name="photos" color="verde"></ion-icon>
     </button>
-    <button ion-fab color="danger" (click)='cerrarSesion()'>
-      <ion-icon name="unlock"></ion-icon>
+    <button ion-fab color="blanco" (click)='cerrarSesion()'>
+      <ion-icon name="unlock" color="danger"></ion-icon>
     </button>
   </ion-buttons> 
 </ion-footer>

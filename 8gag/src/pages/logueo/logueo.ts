@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController, AlertController
 import { HomePage } from '../home/home';
 import { RegistroPage } from '../registro/registro';
 
-@IonicPage()
+
 @Component({
   selector: 'page-logueo',
   templateUrl: 'logueo.html',
