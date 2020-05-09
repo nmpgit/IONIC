@@ -13,7 +13,7 @@
 	<ion-list>
 	  <ion-item>
 	    <ion-label floating>Titulo</ion-label>
-	    <ion-input type="text" [(ngModel)]='titulo'></ion-input>
+	    <ion-input type="text" [(ngModel)]='titulo' style='color:white'></ion-input>
 	  </ion-item>
 	  <ion-item *ngIf='imagenTomada'>
 	  	<img [src]="imagenTomada" />
@@ -22,24 +22,30 @@
 
 	<ion-grid>
 		<ion-row>
-			<ion-col>
+			<!--<ion-col>
 				<button ion-button clear block icon-left (click)='seleccionarImagen()'>  
 					<ion-icon  name='photos'></ion-icon>
 				</button>
-			</ion-col>
+			</ion-col>-->
+	
 			<ion-col>
 				<button ion-button  clear block icon-left (click)='mostrarCamara()'> 
 					<ion-icon  name='camera'></ion-icon>
 				</button>
 			</ion-col>
+			<ion-col>	
+				<button ion-button block color='verde' (click)='crearPost()' [disabled]='titulo.length <=1 || imagenTomada.length <=1 '> 
+				Publicar
+				</button>
+			</ion-col>
 		</ion-row>
 	</ion-grid>
 
-	<ion-row style='margin-top: 10%'>
+<!--	<ion-row style='margin-top: 10%'>
     	<ion-col>	
 			<button ion-button block color='verde' (click)='crearPost()' [disabled]='titulo.length <=1 || imagenTomada.length <=1 '> 
 			Publicar
 			</button>
 		</ion-col>
-    </ion-row>
+    </ion-row>-->
 </ion-content>

@@ -47,7 +47,7 @@ export class SubirPage {
 		});
 	}
 
-	seleccionarImagen(){
+	/*seleccionarImagen(){
 		let opciones:ImagePickerOptions = {
 			quality: 70,
 			outputType: 1,
@@ -62,7 +62,7 @@ export class SubirPage {
 		}, (err) => { 
 			 console.log('Esto es un error:' + JSON.stringify(err))
 		});
-	}
+	}*/
 
 	crearPost(){
 		let archivo = {

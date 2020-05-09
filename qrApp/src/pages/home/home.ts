@@ -30,10 +30,10 @@ export class HomePage {
  
   scan() {
   	if (!this.platform.is('cordova')) {  //PARA PRUEBAS EN LA COMPU.
-      /*this._historialService.agregarHistorial(
+      this._historialService.agregarHistorial(
        "https://www.google.com/maps/place/Av.+Corrientes+1050,+C1043AAX+CABA/@-34.6062135,-58.3921346,15z/data=!4m5!3m4!1s0x95bccacf3fe83a57:0xd28368ab715d0516!8m2!3d-34.6037012!4d-58.3823821"
-    "https://www.google.com/search?q=35067554&oq=35067554&aqs=chrome..69i57.449j0j7&client=ubuntu&sourceid=chrome&ie=UTF-8"
-        )*/
+    //"https://www.google.com/search?q=35067554&oq=35067554&aqs=chrome..69i57.449j0j7&client=ubuntu&sourceid=chrome&ie=UTF-8"
+        )
 //PARA EL SCANEO DE VCARD Y CREACION DE CONTACTO
 /*this._historialService.agregarHistorial( `BEGIN:VCARD
 VERSION:2.1

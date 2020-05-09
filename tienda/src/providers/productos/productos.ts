@@ -37,12 +37,18 @@ export class ProductosProvider{
 		}
 		let promesa = new Promise ((resolve, reject)=>{
 			let url = URL_SERVICIOS + "/productos/obtenerTodos/" + this.pagina
+				console.log('RUTA:provider=', url)
+
 			this._http.get(url)
 			.map(resp => resp)
 			.subscribe((data:DatoInterface) => {
+						JSON.stringify(this.data)
+				
 				if (data.error) {
+				console.log('ACA SE ROMPE', data.error)
 
 				} else {
+					console.log()
 					this.productos.push( ...data.mensaje);
 					this.pagina +=1;
 				}
@@ -61,7 +67,6 @@ export class ProductosProvider{
 				this._http.get(url)
 				.map(resp => resp)
 				.subscribe((data:DatoInterface) => {
-					console.log(data)
 					if (data.error) {
 
 					} else {

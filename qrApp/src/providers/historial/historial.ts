@@ -191,7 +191,7 @@ export class HistorialService {
 	    return fields;
 	}
 
-	mostrarError( mensaje:any ){
+	mostrarError(mensaje){
 	    let toast = this.toastCtrl.create({
 	      message: mensaje,
 	      duration: 2500

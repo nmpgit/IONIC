@@ -12,8 +12,8 @@
 				<span *ngIf='data.tipo == "mapa"'><p>Google Maps</span>
 				<span *ngIf='data.tipo == "email"'><p>Mail a {{_historialService.mandarEmail(data.info, true)}}</p></span>
 				<span *ngIf='data.tipo == "http"'><p>Link a {{data.url}}</p></span>
-				<span *ngIf='data.tipo == "contacto"'><p>Contacto: {{_historialService.crearContacto(data.info, true)}}</p></span>
-				<span *ngIf='data.tipo == "evento"'><p>{{data.esEvento}}</p></span>
+				<span *ngIf='data.tipo == "contacto"'><p style="color: white">Contacto: {{_historialService.crearContacto(data.info, true)}}</p></span>
+				<span *ngIf='data.tipo == "evento"'><p style="color: white">{{data.esEvento}}</p></span>
 			</button>
 		</div>
 	</ion-list>
