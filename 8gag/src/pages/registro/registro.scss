@@ -8,7 +8,10 @@ page-registro {
 	.header-md::after {
 		background-image: none;
 	}
-	.item-block {
+	.item-block, .text-input-md {
 		text-align:center!important
+	}
+	ion-input {
+		color: white;
 	}
 }

@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { MARADONA, PERSONAJES, PERSONAJES2, CHAVO, SIMPSON, SIMPSON2 } from "../../data/data.objetos";
+import { MARADONA, PERSONAJES, PERSONAJES2, CHAVO, SIMPSONS, SIMPSONS2 } from "../../data/data.objetos";
 import { Objeto } from "../../interfaces/objeto.interface";
 import { Refresher, reorderArray, NavParams, ToastController }  from "ionic-angular";
 
@@ -23,7 +23,7 @@ export class DetalleHomePage {
 			case "maradona":
 				this.objetos = MARADONA;
 				break;  
-			case "chavo":
+			case "chavo del 8":
 				this.objetos = CHAVO;
 				break;  
 			case "personajes":
@@ -32,11 +32,11 @@ export class DetalleHomePage {
 			case "personajes2":
 				this.objetos = PERSONAJES2;
 				break;  
-			case "simpson":
-				this.objetos = SIMPSON;
+			case "simpsons":
+				this.objetos = SIMPSONS;
 				break;  
-			case "simpson2":
-				this.objetos = SIMPSON2;
+			case "simpsons2":
+				this.objetos = SIMPSONS2;
 				break;  
 			default:
 				break;

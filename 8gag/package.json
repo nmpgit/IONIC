@@ -28,7 +28,7 @@
     "@ionic-native/status-bar": "4.20.0",
     "@ionic/storage": "^2.2.0",
     "angularfire2": "^5.4.2",
-    "cordova-android": "^8.1.0",
+    "cordova-android": "8.1.0",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-image-picker": "git+https://github.com/shaik305/cordova-plugin-image-picker.git",

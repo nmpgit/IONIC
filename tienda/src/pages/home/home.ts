@@ -16,8 +16,6 @@ export class HomePage {
 	productoPage = ProductoPage;
 	constructor(public navCtrl: NavController, public _prod:ProductosProvider, public _carr:CarritoProvider, public _userv:UsuarioProvider) {
 		this._prod.cargarTodos(false)
-		console.log('RUTA=', URL_IMAGENES)
-
 	}
 
 	

@@ -9,6 +9,7 @@ import { RegistroPage } from '../registro/registro';
   templateUrl: 'logueo.html',
 })
 export class LogueoPage {
+	primeraVez = true;
 	mensaje:boolean = false;
 	loading:any = '';
 	constructor(public navCtrl: NavController, 
@@ -19,11 +20,20 @@ export class LogueoPage {
 	registrarse = RegistroPage;
 
 	showConfirm(){
-		this.ingresar().then((result) => {
-	        if(result){
-	        	this.verificarUsuario('as')
-	        }
-		})  
+		if (this.primeraVez) {	
+			let alerta = this.alertCtrl.create({
+				title: 'Usuario Incorrecto',
+			    subTitle: 'Debe registrarse primero.',
+			    buttons: ['Entendido']
+			}).present();
+			this.primeraVez = false;
+		} else {
+			this.ingresar().then((result) => {
+		        if(result){
+		        	this.verificarUsuario('as')
+		        }
+			})  
+		}
 	}
 
 	ingresar(): Promise<boolean> {

@@ -30,11 +30,11 @@ export class ProductosProvider{
 	}
 
 	cargarTodos(motivo:any){
-
+		console.log('LLEGO A CARGAR TODOS')
 		//si es para iniciar sesion arranco de cero el contador
-		if (motivo == 'inicioSesion'){
-			this.pagina = 0;
-		}
+		//if (motivo == 'inicioSesion'){
+		//	this.pagina = 0;
+		//}
 		let promesa = new Promise ((resolve, reject)=>{
 			let url = URL_SERVICIOS + "/productos/obtenerTodos/" + this.pagina
 				console.log('RUTA:provider=', url)
@@ -42,10 +42,10 @@ export class ProductosProvider{
 			this._http.get(url)
 			.map(resp => resp)
 			.subscribe((data:DatoInterface) => {
-						JSON.stringify(this.data)
+					JSON.stringify(data)
 				
 				if (data.error) {
-				console.log('ACA SE ROMPE', data.error)
+				//console.log('ACA SE ROMPE', data.error)
 
 				} else {
 					console.log()

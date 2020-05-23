@@ -8,7 +8,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   value:any = '';
-  divs:any[] = ['maradona', 'chavo', 'personajes', 'personajes2', 'simpson', 'simpson2']
+  divs:any[] = ['maradona', 'chavo del 8', 'personajes', 'personajes2', 'simpsons', 'simpsons2']
   constructor(public navCtrl:NavController) {
 
   }
@@ -18,8 +18,8 @@ export class HomePage {
       case "maradona":
         this.navCtrl.push(DetalleHomePage, {div: 'maradona'})
         break;  
-      case "chavo":
-        this.navCtrl.push(DetalleHomePage, {div: 'chavo'})
+      case "chavo del 8":
+        this.navCtrl.push(DetalleHomePage, {div: 'chavo del 8'})
         break;  
       case "personajes":
         this.navCtrl.push(DetalleHomePage, {div: 'personajes'})
@@ -27,11 +27,11 @@ export class HomePage {
       case "personajes2":
         this.navCtrl.push(DetalleHomePage, {div: 'personajes2'})
         break;  
-      case "simpson":
-        this.navCtrl.push(DetalleHomePage, {div: 'simpson'})
+      case "simpsons":
+        this.navCtrl.push(DetalleHomePage, {div: 'simpsons'})
         break;
-      case "simpson2":
-        this.navCtrl.push(DetalleHomePage, {div: 'simpson2'})
+      case "simpsons2":
+        this.navCtrl.push(DetalleHomePage, {div: 'simpsons2'})
         break;  
       default:
         break;
